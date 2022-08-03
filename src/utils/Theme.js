@@ -17,7 +17,7 @@ const Theme = {
   width: wp("95%"),
 };
 const COLORS = {
-  primary: "#15636C",
+  primary: "#215675",
   secondary: "#F9F9F9",
   gold: "#ada11f",
   txtWhite: "#ffffff",
