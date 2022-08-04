@@ -18,7 +18,7 @@ const Theme = {
 };
 const COLORS = {
   primary: "#215675",
-  secondary: "#F9F9F9",
+  secondary: "#E7873B",
   gold: "#ada11f",
   txtWhite: "#ffffff",
   txtBlue: "blue",

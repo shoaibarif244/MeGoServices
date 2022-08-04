@@ -1,8 +1,8 @@
 import React from "react";
 import { View, Text, TouchableOpacity, Image } from "react-native";
-import { AntDesign, MaterialCommunityIcons } from "../../Utils/Exports";
+import { AntDesign, MaterialCommunityIcons } from "../../utils/Exports";
 import styles from "./Style";
-import Theme from "../../Utils/Theme";
+import { Theme } from "../../utils/Theme";
 const Buttons = (props) => {
   const {
     btnSmall,

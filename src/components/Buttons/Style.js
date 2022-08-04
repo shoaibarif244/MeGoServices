@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import Theme from "../../Utils/Theme";
+import { Theme, COLORS } from "../../utils/Theme";
 const styles = StyleSheet.create({
   txtLabel: {
     color: Theme.primary,
@@ -25,8 +25,8 @@ const styles = StyleSheet.create({
   btnMediumWrap: {
     backgroundColor: Theme.white,
     width: Theme.width,
-    height: Theme.hp("7%"),
-    borderRadius: 5,
+    height: Theme.hp("6%"),
+    borderRadius: 60,
 
     marginTop: Theme.hp("2%"),
     alignItems: Theme.align,

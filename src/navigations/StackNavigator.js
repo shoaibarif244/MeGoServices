@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
 import { View, SafeAreaView, StatusBar, Platform } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { COLORS } from "../../utils/Theme";
+import { COLORS } from "../utils/Theme";
 const Stack = createNativeStackNavigator();
 
-import SplashScreen from "../SplashScreen/SplashScreen";
+import SplashScreen from "../screens/SplashScreen/SplashScreen";
+import OnBoardingSlider from "../screens/OnBoardingScreens/OnBoardingSlider";
+import LoginScreen from "../screens/Auth/LoginScreen";
 
 function StackNavigator() {
   return (
@@ -27,6 +29,8 @@ function StackNavigator() {
         }}
       >
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
+        <Stack.Screen name="OnBoardingSlider" component={OnBoardingSlider} />
+        <Stack.Screen name="LoginScreen" component={LoginScreen} />
       </Stack.Navigator>
     </SafeAreaView>
   );
