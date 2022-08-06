@@ -46,7 +46,7 @@ const OnBoardingSlider = ({ navigation }) => {
           activeDotStyle={styles.activeDot}
           dotStyle={styles.dot}
           onSlideChange={(a) => {
-            a == 0 ? setIndex(1) : setIndex(a);
+            a == 0 ? setIndex(1) : setIndex(a + 1);
           }}
           renderNextButton={() => {
             return (
@@ -56,7 +56,7 @@ const OnBoardingSlider = ({ navigation }) => {
                   label={"Next"}
                   txtColor={COLORS.txtWhite}
                   BGcolor={COLORS.primary}
-                  btnStyle={{ width: Theme.wp("46%") }}
+                  btnStyle={{ width: Theme.wp("46%"), borderRadius: 60 }}
                   onPress={() => {
                     sliderRef.current.goToSlide(index);
                     setIndex(index + 1);
@@ -73,9 +73,9 @@ const OnBoardingSlider = ({ navigation }) => {
                   label={"Done"}
                   txtColor={COLORS.txtWhite}
                   BGcolor={COLORS.primary}
-                  btnStyle={{ width: Theme.wp("46%") }}
+                  btnStyle={{ width: Theme.wp("46%"), borderRadius: 60 }}
                   onPress={() => {
-                    navigation.navigate("LoginScreen");
+                    navigation.replace("LoginScreen");
                   }}
                 />
               </View>

@@ -1,7 +1,7 @@
 import React from "react";
-import { View, Image, TouchableOpacity, TextInput } from "react-native";
-import { MaterialCommunityIcons, Feather } from "../../Utils/Exports";
-import Theme from "../../Utils/Theme";
+import { View, Image, TouchableOpacity, TextInput, Text } from "react-native";
+import { MaterialCommunityIcons, Feather } from "../../utils/Exports";
+import { Theme } from "../../utils/Theme";
 import styles from "./Style";
 const TextInputs = (props) => {
   const {
@@ -25,6 +25,8 @@ const TextInputs = (props) => {
     searchInputLIcon,
     style,
     placeholderTextColor,
+    phoneNum,
+    country,
   } = props;
   return (
     <>
@@ -35,7 +37,7 @@ const TextInputs = (props) => {
           placeholderTextColor={Theme.greish}
           onChangeText={onChangeText}
           secureTextEntry={secureTextEntry}
-          style={{ ...styles.txtInp, width: width,...style }}
+          style={{ ...styles.txtInp, width: width, ...style }}
           placeholder={placeholder}
           maxLength={maxLength}
           keyboardType={keyboardType}
@@ -83,22 +85,39 @@ const TextInputs = (props) => {
             editable={editable}
           />
           <TouchableOpacity onPress={onEyePress}>
-            <Image
+            {/* <Image
               source={require("../../Assets/Search_fill.png")}
               style={{ height: Theme.iconSize, width: Theme.iconSize }}
               resizeMode="center"
-            />
+            /> */}
           </TouchableOpacity>
         </View>
       ) : searchInputLIcon === true ? (
         <View style={styles.wrapIconTxtInp}>
           <TouchableOpacity onPress={onEyePress}>
-            <Image
+            {/* <Image
               source={require("../../Assets/searchOutline.png")}
               style={{ height: Theme.wp(5), width: Theme.wp(10) }}
               resizeMode="center"
-            />
+            /> */}
           </TouchableOpacity>
+          <TextInput
+            label={label}
+            value={value}
+            placeholderTextColor={Theme.greish}
+            onChangeText={onChangeText}
+            secureTextEntry={secureTextEntry}
+            style={{ ...styles.txtInp1 }}
+            placeholder={placeholder}
+            maxLength={maxLength}
+            keyboardType={keyboardType}
+            autoCapitalize="none"
+            autoCorrect={false}
+          />
+        </View>
+      ) : phoneNum === true ? (
+        <View style={styles.wrapIconTxtInp}>
+          <Text style={styles.countryCode}>{country ? "+971" : "+92"}</Text>
           <TextInput
             label={label}
             value={value}

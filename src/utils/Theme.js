@@ -14,7 +14,7 @@ const Theme = {
   wp,
   hp,
   RFPercentage,
-  width: wp("95%"),
+  width: wp("90%"),
 };
 const COLORS = {
   primary: "#215675",

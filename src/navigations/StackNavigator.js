@@ -7,6 +7,7 @@ const Stack = createNativeStackNavigator();
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import OnBoardingSlider from "../screens/OnBoardingScreens/OnBoardingSlider";
 import LoginScreen from "../screens/Auth/LoginScreen";
+import OTPScreen from "../screens/Auth/OTPScreen";
 
 function StackNavigator() {
   return (
@@ -31,6 +32,7 @@ function StackNavigator() {
         <Stack.Screen name="SplashScreen" component={SplashScreen} />
         <Stack.Screen name="OnBoardingSlider" component={OnBoardingSlider} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
+        <Stack.Screen name="OTPScreen" component={OTPScreen} />
       </Stack.Navigator>
     </SafeAreaView>
   );

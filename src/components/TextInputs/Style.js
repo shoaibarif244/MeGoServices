@@ -1,8 +1,8 @@
 import { StyleSheet, Dimensions } from "react-native";
-import Theme from "../../Utils/Theme";
+import { COLORS, FONTS, Theme } from "../../utils/Theme";
 const styles = StyleSheet.create({
   txtInp: {
-    borderWidth: 2,
+    borderWidth: 1,
     backgroundColor: Theme.white,
     borderRadius: 5,
     borderColor: Theme.lightGrey,
@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
   txtInp1: {
     color: Theme.txtBlack,
     width: "90%",
+    fontFamily: FONTS.bold,
+    fontSize: Theme.txtMedium,
+    color: COLORS.black,
+    paddingHorizontal: Theme.wp("2%"),
   },
   width25Flex: {
     width: "25%",
@@ -38,13 +42,13 @@ const styles = StyleSheet.create({
     width: Theme.width,
     height: Theme.hp("7%"),
     borderRadius: 5,
-    alignItems: Theme.align,
-    justifyContent: Theme.align,
     marginTop: Theme.hp("2%"),
     flexDirection: "row",
-    paddingHorizontal: Theme.wp("1%"),
+    alignItems: "center",
+    // justifyContent: "center",
+    paddingHorizontal: Theme.wp("2%"),
     borderWidth: 2,
-    borderColor: Theme.lightGrey,
+    borderColor: COLORS.lightGrey,
   },
   txtInpBgWhite: {
     borderWidth: 0.5,
@@ -61,6 +65,11 @@ const styles = StyleSheet.create({
     fontWeight: Theme.bold,
     color: Theme.primary,
     fontSize: Theme.txtMedium,
+  },
+  countryCode: {
+    fontFamily: FONTS.bold,
+    fontSize: Theme.txtMedium,
+    color: COLORS.black,
   },
 });
 

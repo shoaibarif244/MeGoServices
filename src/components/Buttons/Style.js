@@ -1,9 +1,9 @@
 import { StyleSheet, Dimensions } from "react-native";
-import { Theme, COLORS } from "../../utils/Theme";
+import { Theme, COLORS, FONTS } from "../../utils/Theme";
 const styles = StyleSheet.create({
   txtLabel: {
     color: Theme.primary,
-    fontWeight: "600",
+    fontFamily: FONTS.bold,
     fontSize: Theme.txtMedium,
     textAlign: "center",
   },
@@ -26,8 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.white,
     width: Theme.width,
     height: Theme.hp("6%"),
-    borderRadius: 60,
-
+    borderRadius: Theme.wp("5%"),
     marginTop: Theme.hp("2%"),
     alignItems: Theme.align,
     justifyContent: Theme.align,
