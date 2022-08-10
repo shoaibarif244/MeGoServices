@@ -1,4 +1,11 @@
-import { View, Text, Image, Animated, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  Image,
+  Animated,
+  TouchableOpacity,
+  Keyboard,
+} from "react-native";
 import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import {
@@ -40,10 +47,10 @@ const animateCell = ({ hasValue, index, isFocused }) => {
 };
 
 const OTPScreen = ({ navigation }) => {
-  const [value, setValue] = useState("");
-  const ref = useBlurOnFulfill({ value, cellCount: CELL_COUNT });
+  const [OTP, setValue] = useState("");
+  const ref = useBlurOnFulfill({ OTP, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
-    value,
+    OTP,
     setValue,
   });
 
@@ -90,6 +97,9 @@ const OTPScreen = ({ navigation }) => {
     );
   };
 
+  // Hiding KeyBoard when OTP entered
+  OTP.length === 4 && Keyboard.dismiss();
+
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
       <View style={styles.mainView}>
@@ -105,7 +115,7 @@ const OTPScreen = ({ navigation }) => {
             <CodeField
               ref={ref}
               {...props}
-              value={value}
+              value={OTP}
               onChangeText={setValue}
               cellCount={CELL_COUNT}
               rootStyle={styles.codeFieldRoot}
@@ -113,18 +123,12 @@ const OTPScreen = ({ navigation }) => {
               textContentType="oneTimeCode"
               renderCell={renderCell}
             />
-            <View
-              style={{
-                flexDirection: "row",
-                justifyContent: "center",
-                alignItems: "center",
-                marginTop: Theme.hp("5%"),
-              }}
-            >
+            <View style={styles.otpContainer}>
               <Text style={styles.txtOTP}>No OTP? </Text>
               <TouchableOpacity
                 onPress={() => {
-                  alert("DashBoard");
+                  alert(OTP);
+
                   // navigation.replace("SignupScreen")
                 }}
               >
@@ -138,6 +142,11 @@ const OTPScreen = ({ navigation }) => {
               BGcolor={COLORS.primary}
               btnStyle={{ marginTop: Theme.hp("6%") }}
               onPress={() => {
+                OTP === "0000"
+                  ? navigation.replace("CustomerServices")
+                  : OTP === "1111"
+                  ? navigation.replace("ProviderMembershipDetails")
+                  : alert("Unathorized OTP");
                 // navigation.replace("LoginScreen");
               }}
             />

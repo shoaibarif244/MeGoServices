@@ -12,6 +12,28 @@ const LoginScreen = ({ navigation }) => {
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
   };
+  let number;
+  const [phoneNum, setPhoneNum] = useState("");
+  const onTextChange = (text) => {
+    let cleaned = ("" + text).replace(/\D/g, "");
+    console.log(cleaned);
+    let match = isEnabled
+      ? cleaned.match(
+          /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/
+        )
+      : cleaned.match(/^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/);
+    console.log(match);
+    if (match) {
+      // let intlCode = match[1] ? "+1 " : "",
+      // alert(JSON.stringify(match[2]));
+      // number = ["(", match[2], ") ", match[3], "-", match[4]].join("");
+      number = [match[3], "-", match[4]].join("");
+      setPhoneNum(number);
+      console.log(number);
+      return;
+    }
+    setPhoneNum(number);
+  };
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
       <View style={styles.mainView}>
@@ -45,12 +67,18 @@ const LoginScreen = ({ navigation }) => {
               phoneNum={true}
               keyboardType={"phone-pad"}
               country={isEnabled}
-              // value={values.username}
-              // onChangeText={(val) => {
-              //   setUsername(val);
-              // }}
+              value={phoneNum}
+              onChangeText={(val) => {
+                onTextChange(val);
+              }}
             />
-
+            {/* 
+              FORMAT UAE NUMBER
+              /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/
+              .test("041234567")
+              FORMAT PAKISTAN NUMBER
+               /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/
+            */}
             <Buttons
               btnMedium={true}
               label={"Next"}

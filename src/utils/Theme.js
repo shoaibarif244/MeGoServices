@@ -14,7 +14,11 @@ const Theme = {
   wp,
   hp,
   RFPercentage,
-  width: wp("90%"),
+  width: wp("95%"),
+  iconSizeM: RFPercentage(3.4),
+  iconSizeL: 35,
+  iconSizeS: 20,
+  iconSizeXS: 12,
 };
 const COLORS = {
   primary: "#215675",
@@ -41,10 +45,7 @@ const COLORS = {
   black: "black",
   txtBlack: "black",
   iconCol: "#D1D1D1",
-  iconSize: 26,
-  iconSizeLarge: 35,
-  iconSizeSm: 20,
-  iconSizeExSm: 12,
+
   bold: "bold",
   errorColor: "red",
   gray1: "#525455",

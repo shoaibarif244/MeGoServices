@@ -1,5 +1,5 @@
 import { StyleSheet, Dimensions } from "react-native";
-import Theme from "../../Utils/Theme";
+import { Theme } from "../../utils/Theme";
 const styles = StyleSheet.create({
   MainView: {
     flex: 1,

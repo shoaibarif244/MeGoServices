@@ -107,6 +107,12 @@ const styles = StyleSheet.create({
     paddingHorizontal: Theme.wp("10%"),
     justifyContent: "center",
   },
+  otpContainer: {
+    flexDirection: "row",
+    justifyContent: "center",
+    alignItems: "center",
+    marginTop: Theme.hp("5%"),
+  },
   txtResend: {
     color: COLORS.primary,
     fontFamily: FONTS.bold,

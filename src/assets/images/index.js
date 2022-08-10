@@ -8,5 +8,14 @@ const IMAGES = {
   onBoarding3: require("./onBoarding3.png"),
   flagPK: require("./flagPK.png"),
   flagUAE: require("./flagUAE.png"),
+  tyreMan: require("./tyreMan.png"),
+  carAC: require("./carAC.png"),
+  electrician: require("./electrician.png"),
+  acTechnician: require("./acTechnician.png"),
+  autoMechanic: require("./autoMechanic.png"),
+  carpenter: require("./carpenter.png"),
+  laundry: require("./laundry.png"),
+  mobileRepair: require("./mobileRepair.png"),
+  plumber: require("./plumber.png"),
 };
 export default IMAGES;
