@@ -9,8 +9,8 @@ import {
 import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
-import Headers from "../../components/Headers/Headers";
-import { COLORS } from "../../utils/Theme";
+import Headers from "../../../components/Headers/Headers";
+import { COLORS } from "../../../utils/Theme";
 import styles from "./Style";
 const CustomerServiceDescription = ({ navigation, route }) => {
   const service = route.params?.service;

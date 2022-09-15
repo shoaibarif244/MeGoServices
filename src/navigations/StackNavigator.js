@@ -1,27 +1,37 @@
 import React, { useEffect } from "react";
 import { View, SafeAreaView, StatusBar, Platform, LogBox } from "react-native";
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { COLORS } from "../utils/Theme";
-const Stack = createNativeStackNavigator();
 
 import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import OnBoardingSlider from "../screens/OnBoardingScreens/OnBoardingSlider";
 import LoginScreen from "../screens/Auth/LoginScreen";
 import OTPScreen from "../screens/Auth/OTPScreen";
-//
-//
-import ProviderMembershipDetails from "../screens/Provider/ProviderMembershipDetails";
-//
-//
-import CustomerServices from "../screens/Customer/CustomerServices";
-import CustomerServiceDescription from "../screens/Customer/CustomerServiceDescription";
+
+// * ========================================================== * //
+// *                 Provider Side Screens                      * //
+// * ========================================================== * //
+
+import ProviderMembershipDetails from "../screens/Provider/ProviderMembershipDetails/ProviderMembershipDetails";
+
+// * ========================================================== * //
+// *                 Customer Side Screens                      * //
+// * ========================================================== * //
+
+import CustomerServices from "../screens/Customer/CustomerServices/CustomerServices";
+import CustomerServiceDescription from "../screens/Customer/CustomerServiceDescription/CustomerServiceDescription";
+
+import { COLORS } from "../utils/Theme";
+
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",
 ]);
 LogBox.ignoreLogs([
   'Warning: Each child in a list should have a unique "key" prop.',
 ]);
-function StackNavigator() {
+
+const Stack = createNativeStackNavigator();
+
+const StackNavigator = () => {
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View>
@@ -36,7 +46,7 @@ function StackNavigator() {
       </View>
 
       <Stack.Navigator
-        initialRouteName="CustomerServices"
+        initialRouteName="SplashScreen"
         screenOptions={{
           headerShown: false,
         }}
@@ -58,6 +68,6 @@ function StackNavigator() {
       </Stack.Navigator>
     </SafeAreaView>
   );
-}
+};
 
 export default StackNavigator;

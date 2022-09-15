@@ -9,9 +9,9 @@ import {
 import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { ImageSlider } from "react-native-image-slider-banner";
-import IMAGES from "../../assets/images";
-import Headers from "../../components/Headers/Headers";
-import { COLORS, Theme } from "../../utils/Theme";
+import IMAGES from "../../../assets/images";
+import Headers from "../../../components/Headers/Headers";
+import { COLORS, Theme } from "../../../utils/Theme";
 import styles from "./Style";
 const CustomerServices = ({ navigation }) => {
   const images = [
