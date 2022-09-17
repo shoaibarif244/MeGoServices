@@ -32,7 +32,6 @@ const TextInputs = (props) => {
     <>
       {simpleTxtInput === true ? (
         <TextInput
-          label={label}
           value={value}
           placeholderTextColor={Theme.greish}
           onChangeText={onChangeText}
@@ -41,14 +40,11 @@ const TextInputs = (props) => {
           placeholder={placeholder}
           maxLength={maxLength}
           keyboardType={keyboardType}
-          autoCapitalize="none"
-          autoCorrect={false}
           editable={editable}
         />
       ) : password === true ? (
         <View style={styles.wrapIconTxtInp}>
           <TextInput
-            label={label}
             value={value}
             placeholderTextColor={Theme.greish}
             onChangeText={onChangeText}

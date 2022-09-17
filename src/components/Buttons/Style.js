@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
     backgroundColor: Theme.white,
     width: Theme.width,
     height: Theme.hp("6%"),
-    borderRadius: Theme.wp("5%"),
+    borderRadius: Theme.wp("3%"),
     marginTop: Theme.hp("2%"),
     alignItems: Theme.align,
     justifyContent: Theme.align,

@@ -145,7 +145,7 @@ const OTPScreen = ({ navigation }) => {
                 OTP === "0000"
                   ? navigation.replace("CustomerServices")
                   : OTP === "1111"
-                  ? navigation.replace("ProviderMembershipDetails")
+                  ? navigation.replace("MembershipDetails")
                   : alert("Unathorized OTP");
                 // navigation.replace("LoginScreen");
               }}

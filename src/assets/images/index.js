@@ -17,5 +17,6 @@ const IMAGES = {
   laundry: require("./laundry.png"),
   mobileRepair: require("./mobileRepair.png"),
   plumber: require("./plumber.png"),
+  congrats: require("./congrats.png"),
 };
 export default IMAGES;

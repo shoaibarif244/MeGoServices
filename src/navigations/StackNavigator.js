@@ -6,19 +6,19 @@ import SplashScreen from "../screens/SplashScreen/SplashScreen";
 import OnBoardingSlider from "../screens/OnBoardingScreens/OnBoardingSlider";
 import LoginScreen from "../screens/Auth/LoginScreen";
 import OTPScreen from "../screens/Auth/OTPScreen";
-
 // * ========================================================== * //
 // *                 Provider Side Screens                      * //
 // * ========================================================== * //
-
-import ProviderMembershipDetails from "../screens/Provider/ProviderMembershipDetails/ProviderMembershipDetails";
-
+import MembershipDetails from "../screens/Provider/MembershipDetails/MembershipDetails";
+import MembershipIDUpload from "../screens/Provider/MembershipIDUpload/MembershipIDUpload";
+import MembershipOtherDocs from "../screens/Provider/MembershipOtherDocs/MembershipOtherDocs";
+import MembershipChooseService from "../screens/Provider/MembershipChooseService/MembershipChooseService";
 // * ========================================================== * //
 // *                 Customer Side Screens                      * //
 // * ========================================================== * //
-
 import CustomerServices from "../screens/Customer/CustomerServices/CustomerServices";
 import CustomerServiceDescription from "../screens/Customer/CustomerServiceDescription/CustomerServiceDescription";
+// * ========================================================== * //
 
 import { COLORS } from "../utils/Theme";
 
@@ -61,9 +61,18 @@ const StackNavigator = () => {
           component={CustomerServiceDescription}
         />
 
+        <Stack.Screen name="MembershipDetails" component={MembershipDetails} />
         <Stack.Screen
-          name="ProviderMembershipDetails"
-          component={ProviderMembershipDetails}
+          name="MembershipIDUpload"
+          component={MembershipIDUpload}
+        />
+        <Stack.Screen
+          name="MembershipOtherDocs"
+          component={MembershipOtherDocs}
+        />
+        <Stack.Screen
+          name="MembershipChooseService"
+          component={MembershipChooseService}
         />
       </Stack.Navigator>
     </SafeAreaView>

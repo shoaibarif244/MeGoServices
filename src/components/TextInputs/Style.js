@@ -3,14 +3,15 @@ import { COLORS, FONTS, Theme } from "../../utils/Theme";
 const styles = StyleSheet.create({
   txtInp: {
     borderWidth: 1,
-    backgroundColor: Theme.white,
+    backgroundColor: COLORS.white,
     borderRadius: 5,
-    borderColor: Theme.lightGrey,
+    borderColor: COLORS.secondary,
     height: Theme.hp("7%"),
     color: Theme.txtBlack,
     paddingLeft: "4%",
-    marginTop: Theme.hp("2%"),
+    marginTop: Theme.hp("1%"),
     fontSize: Theme.txtSmall,
+    fontFamily: FONTS.medium,
   },
   txtInp1: {
     color: Theme.txtBlack,
