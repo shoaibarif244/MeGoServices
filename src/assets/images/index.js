@@ -18,5 +18,6 @@ const IMAGES = {
   mobileRepair: require("./mobileRepair.png"),
   plumber: require("./plumber.png"),
   congrats: require("./congrats.png"),
+  mapBg: require("./mapBg.jpg"),
 };
 export default IMAGES;

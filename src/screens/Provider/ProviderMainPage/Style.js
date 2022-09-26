@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     paddingBottom: Theme.hp("5%"),
   },
   innerMain: {
+    flex: 1,
     width: Theme.width,
     alignSelf: "center",
   },

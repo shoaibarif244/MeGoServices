@@ -10,16 +10,15 @@ const styles = StyleSheet.create({
     width: Theme.width,
     alignSelf: "center",
   },
-  sliderContainer: {
-    height: Theme.hp("24%"),
-    width: Theme.wp("100%"),
-    padding: Theme.hp("1%"),
+  txtHeading: {
+    color: COLORS.black,
+    fontSize: Theme.txtLarge,
+    fontFamily: FONTS.bold,
   },
-  caroselImageContainerStyle: {
-    borderRadius: 10,
-    overflow: "hidden",
-    width: Theme.width,
-    marginRight: 10,
+  silderImage: {
+    width: Theme.wp("90%"),
+    height: Theme.hp("45%"),
+    resizeMode: "center",
   },
   txtTitle: {
     fontSize: Theme.txtMedium,
@@ -27,10 +26,10 @@ const styles = StyleSheet.create({
     color: COLORS.black,
   },
   serviceContainer: {
-    width: Theme.wp("29%"),
-    borderColor: COLORS.secondary,
+    width: Theme.wp("28%"),
     borderWidth: 1,
-    // marginRight: Theme.wp("4%"),
+    borderColor: COLORS.secondary,
+    marginRight: Theme.wp("4%"),
     borderRadius: 10,
     padding: 5,
     alignItems: "center",
@@ -44,7 +43,8 @@ const styles = StyleSheet.create({
     fontSize: Theme.txtSmall,
     fontFamily: FONTS.medium,
     color: COLORS.black,
-    marginTop: Theme.hp("0.6%"),
+    textAlign: "center",
+    marginTop: Theme.hp("4%"),
   },
 });
 

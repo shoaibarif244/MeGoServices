@@ -14,13 +14,20 @@ import MembershipIDUpload from "../screens/Provider/MembershipIDUpload/Membershi
 import MembershipOtherDocs from "../screens/Provider/MembershipOtherDocs/MembershipOtherDocs";
 import MembershipChooseService from "../screens/Provider/MembershipChooseService/MembershipChooseService";
 // * ========================================================== * //
+// * ========================================================== * //
+
+// * ========================================================== * //
 // *                 Customer Side Screens                      * //
 // * ========================================================== * //
 import CustomerServices from "../screens/Customer/CustomerServices/CustomerServices";
 import CustomerServiceDescription from "../screens/Customer/CustomerServiceDescription/CustomerServiceDescription";
 // * ========================================================== * //
+// * ========================================================== * //
 
 import { COLORS } from "../utils/Theme";
+import MembershipCongrats from "../screens/Provider/MembershipCongrats/MembershipCongrats";
+import ProviderMainPage from "../screens/Provider/ProviderMainPage/ProviderMainPage";
+import DrawerNavigator from "./DrawerNavigator";
 
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",
@@ -46,7 +53,7 @@ const StackNavigator = () => {
       </View>
 
       <Stack.Navigator
-        initialRouteName="SplashScreen"
+        initialRouteName="ProviderMainPage"
         screenOptions={{
           headerShown: false,
         }}
@@ -55,6 +62,8 @@ const StackNavigator = () => {
         <Stack.Screen name="OnBoardingSlider" component={OnBoardingSlider} />
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="OTPScreen" component={OTPScreen} />
+        <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+
         <Stack.Screen name="CustomerServices" component={CustomerServices} />
         <Stack.Screen
           name="CustomerServiceDescription"
@@ -74,6 +83,11 @@ const StackNavigator = () => {
           name="MembershipChooseService"
           component={MembershipChooseService}
         />
+        <Stack.Screen
+          name="MembershipCongrats"
+          component={MembershipCongrats}
+        />
+        <Stack.Screen name="ProviderMainPage" component={ProviderMainPage} />
       </Stack.Navigator>
     </SafeAreaView>
   );

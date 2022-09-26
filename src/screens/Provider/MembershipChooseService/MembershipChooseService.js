@@ -74,7 +74,7 @@ const MembershipChooseService = ({ navigation }) => {
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("6%") }}
-            onPress={() => navigation.navigate("MembershipChooseService")}
+            onPress={() => navigation.navigate("MembershipCongrats")}
           />
         </View>
       </View>

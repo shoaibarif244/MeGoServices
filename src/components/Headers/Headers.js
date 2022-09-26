@@ -35,11 +35,7 @@ const Headers = (props) => {
             paddingHorizontal: Theme.wp("2%"),
           }}
         >
-          <TouchableOpacity
-            onPress={() => {
-              alert("Drawer");
-            }}
-          >
+          <TouchableOpacity onPress={onMenuPress}>
             <Feather name="menu" color={COLORS.white} size={Theme.iconSizeM} />
           </TouchableOpacity>
           <TouchableOpacity>

@@ -4,6 +4,7 @@ import Feather from "react-native-vector-icons/Feather";
 import FontAwesome from "react-native-vector-icons/FontAwesome";
 import MaterialCommunityIcons from "react-native-vector-icons/MaterialCommunityIcons";
 import MaterialIcons from "react-native-vector-icons/MaterialIcons";
+import Foundation from "react-native-vector-icons/Foundation";
 export {
   AntDesign,
   Entypo,
@@ -11,6 +12,7 @@ export {
   MaterialCommunityIcons,
   FontAwesome,
   MaterialIcons,
+  Foundation,
 };
 
 // import database from "@react-native-firebase/database";

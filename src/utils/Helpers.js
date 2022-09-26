@@ -1,4 +1,4 @@
-import { ToastAndroid, Platform, AlertIOS } from "react-native";
+import { ToastAndroid, Platform, Alert } from "react-native";
 export default class Helpers {
   convertFirebaseDateToJS = (date) => {
     const fireBaseTime = new Date(
@@ -13,7 +13,7 @@ export default class Helpers {
     if (Platform.OS === "android") {
       ToastAndroid.show(JSON.stringify(msg), ToastAndroid.SHORT);
     } else {
-      AlertIOS.alert(msg);
+      Alert.alert(msg);
     }
   };
 }

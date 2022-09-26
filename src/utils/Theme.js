@@ -10,6 +10,7 @@ const Theme = {
   txtMedium: RFPercentage(2.5),
   txtLarge: RFPercentage(3),
   txtExtraLarge: RFPercentage(3.5),
+  txtExtraLarge1: RFPercentage(4.5),
   align: "center",
   wp,
   hp,
@@ -19,6 +20,16 @@ const Theme = {
   iconSizeL: 35,
   iconSizeS: 20,
   iconSizeXS: 12,
+  shadow: {
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
+  },
 };
 const COLORS = {
   primary: "#215675",

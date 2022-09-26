@@ -36,10 +36,10 @@ const CustomerServices = ({ navigation }) => {
     { id: 8, img: IMAGES.autoMechanic, name: "Auto Mechanic" },
     { id: 9, img: IMAGES.plumber, name: "Plumber" },
   ];
-  const Service = ({ service }) => (
+  const Service = ({ service, style }) => (
     <TouchableOpacity
       key={service?.id}
-      style={styles.serviceContainer}
+      style={{ ...styles.serviceContainer, ...style }}
       onPress={() => {
         navigation.navigate("CustomerServiceDescription", {
           service: service,
@@ -63,6 +63,11 @@ const CustomerServices = ({ navigation }) => {
               // onItemChanged={(item) => console.log("item", item)}
               timer={2000}
               closeIconColor={COLORS.white}
+              caroselImageContainerStyle={styles.caroselImageContainerStyle}
+              caroselImageStyle={{ width: Theme.width }}
+              inActiveIndicatorStyle={{ backgroundColor: COLORS.primary }}
+              activeIndicatorStyle={{ backgroundColor: COLORS.secondary }}
+              indicatorContainerStyle={{ ...Theme.shadow }}
             />
           </View>
           <View style={styles.innerMain}>
@@ -70,7 +75,12 @@ const CustomerServices = ({ navigation }) => {
             <View style={{ marginTop: Theme.hp("1%") }}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {services.map((service, index) => {
-                  return <Service service={service} />;
+                  return (
+                    <Service
+                      service={service}
+                      style={{ marginRight: Theme.wp("4%") }}
+                    />
+                  );
                 })}
               </ScrollView>
             </View>

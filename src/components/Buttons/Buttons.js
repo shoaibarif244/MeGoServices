@@ -43,8 +43,8 @@ const Buttons = (props) => {
           <TouchableOpacity
             style={{
               ...styles.btnMediumWrap,
-              ...btnStyle,
               alignSelf: alignSelf,
+              ...btnStyle,
               backgroundColor: props.BGcolor,
             }}
             onPress={onPress}
