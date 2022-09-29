@@ -29,7 +29,7 @@ const Headers = (props) => {
           style={{
             flexDirection: "row",
             justifyContent: "space-between",
-            height: Theme.hp("6%"),
+            height: Theme.hp("8%"),
             backgroundColor: COLORS.primary,
             alignItems: "center",
             paddingHorizontal: Theme.wp("2%"),
@@ -42,10 +42,10 @@ const Headers = (props) => {
             <Image
               source={IMAGES.logoWithBG}
               style={{
-                width: Theme.wp("10%"),
-                height: Theme.hp("5%"),
-                resizeMode: "center",
+                width: Theme.wp("12%"),
+                height: Theme.hp("6%"),
               }}
+              resizeMode="center"
             />
           </TouchableOpacity>
           <TouchableOpacity

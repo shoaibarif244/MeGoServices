@@ -93,6 +93,7 @@ const ProviderMainPage = ({ navigation }) => {
   const [isOnline, setIsOnline] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   useEffect(() => {
+    navigation.openDrawer();
     setTimeout(() => {
       setIsVerified(true);
     }, 4000);

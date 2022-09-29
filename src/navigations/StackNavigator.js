@@ -28,6 +28,8 @@ import { COLORS } from "../utils/Theme";
 import MembershipCongrats from "../screens/Provider/MembershipCongrats/MembershipCongrats";
 import ProviderMainPage from "../screens/Provider/ProviderMainPage/ProviderMainPage";
 import DrawerNavigator from "./DrawerNavigator";
+import Gallery from "../screens/Gallery/Gallery";
+import Notifications from "../screens/Notifications/Notifications";
 
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",
@@ -53,7 +55,7 @@ const StackNavigator = () => {
       </View>
 
       <Stack.Navigator
-        initialRouteName="ProviderMainPage"
+        initialRouteName="DrawerNavigator"
         screenOptions={{
           headerShown: false,
         }}
@@ -63,6 +65,8 @@ const StackNavigator = () => {
         <Stack.Screen name="LoginScreen" component={LoginScreen} />
         <Stack.Screen name="OTPScreen" component={OTPScreen} />
         <Stack.Screen name="DrawerNavigator" component={DrawerNavigator} />
+        <Stack.Screen name="Gallery" component={Gallery} />
+        <Stack.Screen name="Notifications" component={Notifications} />
 
         <Stack.Screen name="CustomerServices" component={CustomerServices} />
         <Stack.Screen

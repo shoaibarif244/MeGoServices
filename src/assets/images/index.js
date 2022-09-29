@@ -19,5 +19,8 @@ const IMAGES = {
   plumber: require("./plumber.png"),
   congrats: require("./congrats.png"),
   mapBg: require("./mapBg.jpg"),
+  picture: require("./picture.png"),
+  video: require("./video.png"),
+  arrow: require("./arrow.png"),
 };
 export default IMAGES;
