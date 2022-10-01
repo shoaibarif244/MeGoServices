@@ -1,64 +1,3 @@
-// import React, { useState } from "react";
-// import { View } from "react-native";
-// import SlideToConfirm from "rn-slide-to-confirm";
-// import { COLORS, FONTS, Theme } from "../../../utils/Theme";
-// import { Foundation } from "../../../utils/Exports";
-// const ProviderMainPage = () => {
-//   const [isOnline, setIsOnline] = useState(false);
-
-//   return (
-//     <View style={{ alignItems: "center", justifyContent: "center" }}>
-//       <SlideToConfirm
-//         unconfimredTipText={"Slide to Online"}
-//         unconfirmedTipTextStyle={{
-//           color: COLORS.black,
-//           fontSize: Theme.txtMedium,
-//           fontFamily: FONTS.bold,
-//         }}
-//         confirmedTipText={"Slide to Offline"}
-//         confirmedTipTextStyle={{
-//           color: COLORS.white,
-//           fontSize: Theme.txtMedium,
-//           fontFamily: FONTS.bold,
-//         }}
-//         state={isOnline}
-//         onSlideConfirmed={() => setIsOnline(true)}
-//         onSlideEnd={() => setIsOnline(false)}
-//         sliderStyle={{
-//           backgroundColor: isOnline ? COLORS.secondary : COLORS.white,
-//           justifyContent: "center",
-//           width: Theme.wp("75%"),
-//           height: Theme.wp("10.5%"),
-//           borderWidth: 1,
-//           borderColor: COLORS.secondary,
-//           borderRadius: 20,
-//           marginTop: 150,
-//           //   overflow: "hidden",
-//         }}
-//         sliderButtonComponent={
-//           <View
-//             style={{
-//               width: Theme.wp("10%"),
-//               height: Theme.wp("10%"),
-//               alignItems: "center",
-//               justifyContent: "center",
-//               backgroundColor: isOnline ? COLORS.white : COLORS.secondary,
-//               borderRadius: 40,
-//             }}
-//           >
-//             <Foundation
-//               name={isOnline ? "arrow-left" : "arrow-right"}
-//               size={Theme.iconSizeS}
-//               color={isOnline ? COLORS.secondary : COLORS.white}
-//             />
-//           </View>
-//         }
-//       />
-//     </View>
-//   );
-// };
-
-// export default ProviderMainPage;
 import {
   View,
   Text,
@@ -93,14 +32,18 @@ const ProviderMainPage = ({ navigation }) => {
   const [isOnline, setIsOnline] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
   useEffect(() => {
-    navigation.openDrawer();
+    // navigation.openDrawer();
     setTimeout(() => {
       setIsVerified(true);
     }, 4000);
   });
   return (
     <View style={styles.mainView}>
-      <Headers mainHeader={true} onMenuPress={() => navigation.openDrawer()} />
+      <Headers
+        mainHeader={true}
+        onMenuPress={() => navigation.openDrawer()}
+        navigation={navigation}
+      />
       <ImageBackground
         source={IMAGES.mapBg}
         style={{ ...StyleSheet.absoluteFill, zIndex: -2 }}

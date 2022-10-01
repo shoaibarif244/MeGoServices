@@ -1,5 +1,5 @@
 import { StyleSheet } from "react-native";
-import { COLORS, FONTS, Theme } from "../../../utils/Theme";
+import { COLORS, FONTS, Theme } from "../../utils/Theme";
 const styles = StyleSheet.create({
   mainView: {
     flex: 1,

@@ -7,6 +7,7 @@ import IMAGES from "../../assets/images";
 // import { useRoute, useNavigation } from "@react-navigation/native";
 const Headers = (props) => {
   const {
+    navigation,
     LogoBackHeader,
     onBackPress,
     homePage,
@@ -50,7 +51,7 @@ const Headers = (props) => {
           </TouchableOpacity>
           <TouchableOpacity
             onPress={() => {
-              alert("Notifications");
+              navigation.navigate("Notifications");
             }}
           >
             <MaterialIcons

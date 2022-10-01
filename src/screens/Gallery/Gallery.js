@@ -19,7 +19,11 @@ const Gallery = ({ navigation }) => {
   const [isVideos, setIsVideos] = useState(false);
   return (
     <View style={styles.mainView}>
-      <Headers mainHeader={true} onMenuPress={() => navigation.openDrawer()} />
+      <Headers
+        mainHeader={true}
+        onMenuPress={() => navigation.openDrawer()}
+        navigation={navigation}
+      />
       <View style={{ alignItems: "center", marginVertical: Theme.hp("2%") }}>
         <Text allowFontScaling={false} style={styles.txtHeading}>
           Gallery

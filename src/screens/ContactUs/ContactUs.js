@@ -3,9 +3,8 @@ import { View, Text } from "react-native";
 import { Theme } from "../../utils/Theme";
 import Headers from "../../components/Headers/Headers";
 import styles from "./Style";
-import NotificationsFL from "../../components/FlatLists/NotificationsFL";
 
-const Notifications = ({ navigation }) => {
+const ContactUs = ({ navigation }) => {
   return (
     <View style={styles.mainView}>
       <Headers
@@ -15,15 +14,13 @@ const Notifications = ({ navigation }) => {
       />
       <View style={{ alignItems: "center", marginVertical: Theme.hp("2%") }}>
         <Text allowFontScaling={false} style={styles.txtHeading}>
-          Notifications
+          Contact Us
         </Text>
       </View>
 
-      <View style={styles.innerMain}>
-        <NotificationsFL />
-      </View>
+      <View style={styles.innerMain}></View>
     </View>
   );
 };
 
-export default Notifications;
+export default ContactUs;

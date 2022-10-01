@@ -28,7 +28,7 @@ const MembershipCongrats = ({ navigation }) => {
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("6%") }}
-            onPress={() => navigation.navigate("ProviderMainPage")}
+            onPress={() => navigation.navigate("DrawerNavigator")}
           />
         </View>
       </View>

@@ -12,6 +12,7 @@ const styles = StyleSheet.create({
     color: COLORS.black,
     fontSize: Theme.txtSmall,
     fontFamily: FONTS.semiBold,
+    marginLeft: Theme.wp("4%"),
   },
 });
 

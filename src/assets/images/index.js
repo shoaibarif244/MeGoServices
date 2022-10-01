@@ -22,5 +22,14 @@ const IMAGES = {
   picture: require("./picture.png"),
   video: require("./video.png"),
   arrow: require("./arrow.png"),
+  contactUs: require("./contacsUs.png"),
+  notification: require("./bell.png"),
+  payment: require("./payment.png"),
+  reqHistory: require("./file.png"),
+  gallery: require("./gallery.png"),
+  about: require("./info.png"),
+  logout: require("./logout.png"),
+  settings: require("./settings.png"),
+  profile: require("./profile.png"),
 };
 export default IMAGES;
