@@ -6,7 +6,7 @@ const styles = StyleSheet.create({
     backgroundColor: COLORS.white,
   },
   innerMain: {
-    flex: 1,
+    // flex: 1,
     width: Theme.width,
     alignSelf: "center",
   },

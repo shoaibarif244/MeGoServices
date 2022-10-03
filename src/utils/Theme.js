@@ -5,6 +5,7 @@ import {
 import { RFPercentage } from "react-native-responsive-fontsize";
 const Theme = {
   txtTiny: RFPercentage(1.3),
+  txtSmallestt: RFPercentage(1.7),
   txtSmallest: RFPercentage(1.8),
   txtSmall: RFPercentage(2),
   txtMedium: RFPercentage(2.5),

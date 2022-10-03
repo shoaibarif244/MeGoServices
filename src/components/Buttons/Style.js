@@ -4,7 +4,7 @@ const styles = StyleSheet.create({
   txtLabel: {
     color: Theme.primary,
     fontFamily: FONTS.bold,
-    fontSize: Theme.txtMedium,
+    fontSize: Theme.txtSmall,
     textAlign: "center",
   },
   txtLabel1: {

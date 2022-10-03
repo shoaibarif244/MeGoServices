@@ -49,7 +49,10 @@ const Buttons = (props) => {
             }}
             onPress={onPress}
           >
-            <Text style={{ ...styles.txtLabel, color: props.txtColor }}>
+            <Text
+              allowFontScaling={false}
+              style={{ ...styles.txtLabel, color: props.txtColor }}
+            >
               {label}
             </Text>
           </TouchableOpacity>

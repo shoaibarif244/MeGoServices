@@ -55,7 +55,7 @@ const StackNavigator = () => {
       </View>
 
       <Stack.Navigator
-        initialRouteName="MembershipCongrats"
+        initialRouteName="DrawerNavigator"
         screenOptions={{
           headerShown: false,
         }}

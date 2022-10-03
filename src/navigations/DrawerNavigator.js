@@ -26,6 +26,7 @@ const DrawerNavigator = () => {
         },
       }}
       drawerContent={(props) => <DrawerContent {...props} />}
+      initialRouteName="CustomerProfile"
     >
       <Drawer.Screen name="ProviderMainPage" component={ProviderMainPage} />
       <Drawer.Screen name="Gallery" component={Gallery} />
