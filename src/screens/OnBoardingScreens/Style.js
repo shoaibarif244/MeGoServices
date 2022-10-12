@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   silderText: {
     fontFamily: FONTS.semiBold,
-    fontSize: Theme.txtLarge,
+    fontSize: Theme.txtMedium,
     color: COLORS.black,
     paddingHorizontal: Theme.wp("20%"),
     textAlign: "center",

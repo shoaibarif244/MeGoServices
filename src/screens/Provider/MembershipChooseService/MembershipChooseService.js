@@ -5,6 +5,7 @@ import {
   ScrollView,
   TouchableOpacity,
   FlatList,
+  Alert,
 } from "react-native";
 import React from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -74,7 +75,14 @@ const MembershipChooseService = ({ navigation }) => {
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("6%") }}
-            onPress={() => navigation.navigate("MembershipCongrats")}
+            onPress={() =>
+              service !== ""
+                ? navigation.navigate("MembershipCongrats")
+                : Alert.alert(
+                    "Required",
+                    "To proceed further,Please Select one Service that you can provide."
+                  )
+            }
           />
         </View>
       </View>

@@ -109,7 +109,9 @@ const OTPScreen = ({ navigation }) => {
             <View style={styles.filled} />
           </View>
           <Image source={IMAGES.logo} style={styles.logo} />
-          <Text style={styles.title}>We sent an OTP to verify your number</Text>
+          <Text allowFontScaling={false} style={styles.title}>
+            We sent an OTP to verify your number
+          </Text>
 
           <View style={{ alignItems: "center", marginTop: Theme.hp("4%") }}>
             <CodeField
@@ -124,7 +126,9 @@ const OTPScreen = ({ navigation }) => {
               renderCell={renderCell}
             />
             <View style={styles.otpContainer}>
-              <Text style={styles.txtOTP}>No OTP? </Text>
+              <Text allowFontScaling={false} style={styles.txtOTP}>
+                No OTP?{" "}
+              </Text>
               <TouchableOpacity
                 onPress={() => {
                   alert(OTP);
@@ -132,7 +136,9 @@ const OTPScreen = ({ navigation }) => {
                   // navigation.replace("SignupScreen")
                 }}
               >
-                <Text style={styles.txtResend}>Resend</Text>
+                <Text allowFontScaling={false} style={styles.txtResend}>
+                  Resend
+                </Text>
               </TouchableOpacity>
             </View>
             <Buttons
@@ -143,9 +149,9 @@ const OTPScreen = ({ navigation }) => {
               btnStyle={{ marginTop: Theme.hp("6%") }}
               onPress={() => {
                 OTP === "0000"
-                  ? navigation.replace("CustomerServices")
+                  ? navigation.navigate("CustomerServices")
                   : OTP === "1111"
-                  ? navigation.replace("MembershipDetails")
+                  ? navigation.navigate("MembershipDetails")
                   : alert("Unathorized OTP");
                 // navigation.replace("LoginScreen");
               }}

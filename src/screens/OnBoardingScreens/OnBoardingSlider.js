@@ -30,7 +30,9 @@ const OnBoardingSlider = ({ navigation }) => {
     return (
       <View style={styles.renderItem}>
         <Image source={item.image} style={styles.silderImage} />
-        <Text style={styles.silderText}>{item.text}</Text>
+        <Text allowFontScaling={false} style={styles.silderText}>
+          {item.text}
+        </Text>
       </View>
     );
   };

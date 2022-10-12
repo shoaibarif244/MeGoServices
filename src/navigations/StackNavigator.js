@@ -55,7 +55,7 @@ const StackNavigator = () => {
       </View>
 
       <Stack.Navigator
-        initialRouteName="DrawerNavigator"
+        initialRouteName="SplashScreen"
         screenOptions={{
           headerShown: false,
         }}

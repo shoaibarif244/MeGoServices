@@ -6,7 +6,7 @@ const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
       navigation.replace("OnBoardingSlider");
-    }, 3000);
+    }, 2500);
   }, []);
 
   return (

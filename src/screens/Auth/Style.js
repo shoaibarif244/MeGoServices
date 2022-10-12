@@ -34,13 +34,15 @@ const styles = StyleSheet.create({
     marginTop: Theme.hp("10%"),
   },
   flag: {
+    borderWidth: 1.5,
+    borderRadius: Theme.wp("6%"),
     width: Theme.wp("12%"),
     height: Theme.wp("12%"),
     resizeMode: "center",
   },
   title: {
     fontFamily: FONTS.bold,
-    fontSize: Theme.txtLarge,
+    fontSize: Theme.txtSmall,
     color: COLORS.black,
     paddingHorizontal: Theme.wp("10%"),
     textAlign: "center",
@@ -116,12 +118,12 @@ const styles = StyleSheet.create({
   txtResend: {
     color: COLORS.primary,
     fontFamily: FONTS.bold,
-    fontSize: Theme.txtSmall,
+    fontSize: Theme.txtSmallest,
   },
   txtOTP: {
     color: COLORS.secondary,
     fontFamily: FONTS.medium,
-    fontSize: Theme.txtSmall,
+    fontSize: Theme.txtSmallest,
   },
 });
 export default styles;

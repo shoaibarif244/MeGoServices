@@ -43,9 +43,17 @@ const LoginScreen = ({ navigation }) => {
             <View style={styles.unFilled} />
           </View>
           <Image source={IMAGES.logo} style={styles.logo} />
-          <Text style={styles.title}>Enter your mobile number to Login</Text>
+          <Text allowFontScaling={false} style={styles.title}>
+            Enter your mobile number to Login
+          </Text>
           <View style={styles.countryContainer}>
-            <Image source={IMAGES.flagPK} style={styles.flag} />
+            <Image
+              source={IMAGES.flagPK}
+              style={{
+                ...styles.flag,
+                borderColor: !isEnabled ? COLORS.secondary : COLORS.lightGrey,
+              }}
+            />
 
             <SwitchToggle
               switchOn={isEnabled}
@@ -58,7 +66,13 @@ const LoginScreen = ({ navigation }) => {
               backgroundColorOff={COLORS.lightGreish}
               duration={100}
             />
-            <Image source={IMAGES.flagUAE} style={styles.flag} />
+            <Image
+              source={IMAGES.flagUAE}
+              style={{
+                ...styles.flag,
+                borderColor: isEnabled ? COLORS.secondary : COLORS.lightGrey,
+              }}
+            />
           </View>
 
           <View style={{ alignItems: "center", marginTop: Theme.hp("4%") }}>
@@ -86,7 +100,7 @@ const LoginScreen = ({ navigation }) => {
               BGcolor={COLORS.primary}
               btnStyle={{ marginTop: Theme.hp("4%") }}
               onPress={() => {
-                navigation.replace("OTPScreen");
+                navigation.navigate("OTPScreen");
               }}
             />
           </View>

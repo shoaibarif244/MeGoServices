@@ -40,20 +40,22 @@ const CustomerServices = ({ navigation }) => {
     <TouchableOpacity
       key={service?.id}
       style={{ ...styles.serviceContainer, ...style }}
-      onPress={() => {
-        navigation.navigate("CustomerServiceDescription", {
-          service: service,
-        });
-      }}
+      // onPress={() => {
+      //   navigation.navigate("CustomerServiceDescription", {
+      //     service: service,
+      //   });
+      // }}
     >
       <Image source={service?.img} style={styles.serviceImg} />
-      <Text style={styles.serviceName}>{service?.name}</Text>
+      <Text allowFontScaling={false} style={styles.serviceName}>
+        {service?.name}
+      </Text>
     </TouchableOpacity>
   );
 
   return (
     <>
-      <Headers mainHeader={true} />
+      <Headers mainHeader={true} navigation={navigation} />
       <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
         <View style={styles.mainView}>
           <View style={styles.sliderContainer}>

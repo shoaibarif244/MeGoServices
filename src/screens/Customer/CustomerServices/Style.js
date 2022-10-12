@@ -41,7 +41,7 @@ const styles = StyleSheet.create({
     resizeMode: "center",
   },
   serviceName: {
-    fontSize: Theme.txtSmall,
+    fontSize: Theme.txtSmallestt,
     fontFamily: FONTS.medium,
     color: COLORS.black,
     marginTop: Theme.hp("0.6%"),
