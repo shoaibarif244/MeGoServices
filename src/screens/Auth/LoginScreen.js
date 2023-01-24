@@ -7,8 +7,11 @@ import SwitchToggle from "react-native-switch-toggle";
 import Buttons from "../../components/Buttons/Buttons";
 import TextInputs from "../../components/TextInputs/TextInputs";
 import styles from "./Style";
+import ImageCropPicker from "react-native-image-crop-picker";
+import axios from "axios";
 const LoginScreen = ({ navigation }) => {
   const [isEnabled, setIsEnabled] = useState(false);
+  // const [image, setImage] = useState(null);
   const toggleSwitch = () => {
     setIsEnabled((previousState) => !previousState);
   };
@@ -33,6 +36,84 @@ const LoginScreen = ({ navigation }) => {
       return;
     }
     setPhoneNum(number);
+  };
+  const sendReciept = async (image) => {
+    let form = new FormData();
+    form.append("url", "megoservices.com");
+    form.append("slider", {
+      uri: image?.path,
+      name: "image.jpg",
+      type: image?.mime,
+    });
+    let res = await fetch(
+      "https://mego-apis.vercel.app/api/sliders/saveSlider",
+      {
+        method: "post",
+        body: form,
+        headers: {
+          "Content-Type": "multipart/form-data; ",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FmZWEyMDNjZTZhMzMyNTdkMTFiNjAiLCJwaG9uZU5vIjoiKzkyMzAwNzYwMzEwNTgiLCJvdHAiOjY5MzYsImlhdCI6MTY3NDUwMTE1Nn0.sm4LlASBcGbsNq6CqKkn8MelEQyq_GUwRm4KHeMWRz4",
+        },
+      }
+    );
+    let responseJson = await res.json();
+    // alert(JSON.stringify(responseJson, 2, 4));
+    console.log(responseJson);
+
+    // axios
+    //   .post("https://mego-apis.vercel.app/api/sliders/saveSlider", form, {
+    //     headers: {
+    //       "Content-Type": "multipart/form-data",
+    // Authorization:
+    //   "JWT eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FmZWEyMDNjZTZhMzMyNTdkMTFiNjAiLCJwaG9uZU5vIjoiKzkyMzAwNzYwMzEwNTgiLCJvdHAiOjY5MzYsImlhdCI6MTY3NDUwMTE1Nn0.sm4LlASBcGbsNq6CqKkn8MelEQyq_GUwRm4KHeMWRz4",
+    //     },
+    //   })
+    //   .then((response) => {
+    //     const responseJson = response.data;
+    //     console.log("RESPONSE==>", JSON.stringify(responseJson));
+    //     if (responseJson.status == true) {
+    //     } else {
+    //     }
+    //   })
+    //   .catch((error) => {
+    //     console.log("======error=====", JSON.stringify(error, 2, 4));
+    //     // if (error == "TypeError: Network request failed") {
+    //     //   onError(global.currentLang["_188"]);
+    //     // } else {
+    //     //   onError(error.message);
+    //     // }
+    //   });
+  };
+  const uploadMedicalReciept = (data, onSuccess, onFailure) => {
+    this.sendReciept(
+      Urls.UPLOAD_MEDICAL_RECIEPT,
+      form,
+      (resp) => {
+        onSuccess(resp);
+      },
+      (error) => {
+        onFailure(error.message);
+      }
+    );
+  };
+  const pickImage = () => {
+    ImageCropPicker.openCamera({
+      cropping: true,
+      freeStyleCropEnabled: true,
+    })
+      .then((image) => {
+        console.log("IMAGE FROM CAMERA===>>>", image);
+        sendReciept(image);
+        let img = {
+          uri: image.path,
+          width: image.width,
+          height: image.height,
+        };
+        // setImage(image);
+        // uploadMedicalReciept();
+      })
+      .catch((e) => console.log(e.message));
   };
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
@@ -100,7 +181,8 @@ const LoginScreen = ({ navigation }) => {
               BGcolor={COLORS.primary}
               btnStyle={{ marginTop: Theme.hp("4%") }}
               onPress={() => {
-                navigation.navigate("OTPScreen");
+                // navigation.navigate("OTPScreen");
+                pickImage();
               }}
             />
           </View>
