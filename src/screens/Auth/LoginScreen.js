@@ -37,21 +37,43 @@ const LoginScreen = ({ navigation }) => {
     }
     setPhoneNum(number);
   };
+  const uploadImage = async (image) => {
+    try {
+      let formData = new FormData();
+      formData.append("sliderUrl", "acasdasdsb.com");
+      formData.append("slider", {
+        uri: image?.path,
+        name: "image.jpg",
+        type: image?.mime,
+      });
+      const response = await axios.post("sliders/saveSlider", formData, {
+        headers: {
+          "Content-Type": "multipart/form-data",
+          Authorization:
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FmZWEyMDNjZTZhMzMyNTdkMTFiNjAiLCJwaG9uZU5vIjoiKzkyMzAwNzYwMzEwNTgiLCJvdHAiOjY5MzYsImlhdCI6MTY3NDUwMTE1Nn0.sm4LlASBcGbsNq6CqKkn8MelEQyq_GUwRm4KHeMWRz4",
+        },
+      });
+      console.log(response.data);
+    } catch (error) {
+      console.log("Err img upload", JSON.stringify(error));
+    }
+  };
   const sendReciept = async (image) => {
     let form = new FormData();
-    form.append("url", "megoservices.com");
+    form.append("sliderUrl", "acasdasdsb.com");
     form.append("slider", {
       uri: image?.path,
       name: "image.jpg",
       type: image?.mime,
     });
+
     let res = await fetch(
       "https://mego-apis.vercel.app/api/sliders/saveSlider",
       {
         method: "post",
         body: form,
         headers: {
-          "Content-Type": "multipart/form-data; ",
+          "Content-Type": "multipart/form-data",
           Authorization:
             "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FmZWEyMDNjZTZhMzMyNTdkMTFiNjAiLCJwaG9uZU5vIjoiKzkyMzAwNzYwMzEwNTgiLCJvdHAiOjY5MzYsImlhdCI6MTY3NDUwMTE1Nn0.sm4LlASBcGbsNq6CqKkn8MelEQyq_GUwRm4KHeMWRz4",
         },
@@ -101,10 +123,11 @@ const LoginScreen = ({ navigation }) => {
     ImageCropPicker.openCamera({
       cropping: true,
       freeStyleCropEnabled: true,
+      compressImageQuality: 0.5,
     })
       .then((image) => {
         console.log("IMAGE FROM CAMERA===>>>", image);
-        sendReciept(image);
+        uploadImage(image);
         let img = {
           uri: image.path,
           width: image.width,
