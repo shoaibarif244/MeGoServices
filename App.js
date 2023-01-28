@@ -15,9 +15,9 @@ const App = () => {
   const { netInfo } = selector;
   const dispatch = useDispatch();
   const checkInternet = () => {
-    NetInfo.addEventListener((state) => {
-      dispatch(updateNetConnection(state.isConnected));
-    });
+    // NetInfo.addEventListener((state) => {
+    //   dispatch(updateNetConnection(state.isConnected));
+    // });
   };
   useEffect(() => {
     checkInternet();

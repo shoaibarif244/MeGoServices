@@ -1,19 +1,12 @@
-import { ToastAndroid, Platform, Alert } from "react-native";
-export default class Helpers {
-  convertFirebaseDateToJS = (date) => {
-    const fireBaseTime = new Date(
-      date?.seconds * 1000 + date?.nanoseconds / 1000000
-    );
-    const dueDate = fireBaseTime.toDateString();
-    return dueDate.slice(4);
-    return dueDate;
-  };
-
-  Toaster = (msg) => {
-    if (Platform.OS === "android") {
-      ToastAndroid.show(JSON.stringify(msg), ToastAndroid.SHORT);
-    } else {
-      Alert.alert(msg);
-    }
-  };
-}
+export const isValidPhoneNumFor_UAE = (phoneNum) => {
+  let cleaned = phoneNum.replace(/\D/g, "");
+  let regExp = /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/;
+  let isValid = regExp.test(cleaned);
+  return isValid;
+};
+export const isValidPhoneNumFor_PK = (phoneNum) => {
+  let cleaned = phoneNum.replace(/\D/g, "");
+  let regExp = /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
+  let isValid = regExp.test(cleaned);
+  return isValid;
+};

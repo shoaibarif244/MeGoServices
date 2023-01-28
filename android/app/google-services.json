@@ -1,0 +1,114 @@
+{
+  "project_info": {
+    "project_number": "402615855938",
+    "firebase_url": "https://mego-services-default-rtdb.firebaseio.com",
+    "project_id": "mego-services",
+    "storage_bucket": "mego-services.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402615855938:android:977b18fdfc9f4277c0b6db",
+        "android_client_info": {
+          "package_name": "com.app.mego"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402615855938-80d0b7mel2hh29gq0atgaepi6rgdqedp.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.app.mego",
+            "certificate_hash": "c00b94aad3f508338b8e65da1658bfffc0abbec8"
+          }
+        },
+        {
+          "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzoMTr1Qt7HvQZu3V1sN21JznstDXMygs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402615855938:android:e63e3a0a5cbf464bc0b6db",
+        "android_client_info": {
+          "package_name": "com.emirates.red.crescent"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402615855938-77rb690boc71jvbiic6nd9pi82p90hkl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.emirates.red.crescent",
+            "certificate_hash": "c00b94aad3f508338b8e65da1658bfffc0abbec8"
+          }
+        },
+        {
+          "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzoMTr1Qt7HvQZu3V1sN21JznstDXMygs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:402615855938:android:b6f296d45d3e7977c0b6db",
+        "android_client_info": {
+          "package_name": "com.megoservices"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDzoMTr1Qt7HvQZu3V1sN21JznstDXMygs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "402615855938-par3sjfj64d6a203qc4oaipe6q8tjn39.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

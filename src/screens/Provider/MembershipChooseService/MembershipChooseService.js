@@ -14,7 +14,11 @@ import { COLORS, Theme } from "../../../utils/Theme";
 import styles from "./Style";
 import Buttons from "../../../components/Buttons/Buttons";
 import { useState } from "react";
-const MembershipChooseService = ({ navigation }) => {
+import Modals from "../../../components/Modals/Modals";
+import { providerRegistration } from "../../../services/apis";
+const MembershipChooseService = ({ navigation, route }) => {
+  const { values } = route?.params;
+
   const SERVICES = [
     { id: 1, img: IMAGES.tyreMan, name: "Tyreman" },
     { id: 2, img: IMAGES.carAC, name: "Car AC" },
@@ -27,7 +31,7 @@ const MembershipChooseService = ({ navigation }) => {
     { id: 9, img: IMAGES.plumber, name: "Plumber" },
   ];
   const [service, setService] = useState("");
-
+  const [isLoading, setIsLoading] = useState(false);
   const Service = ({ Service }) => (
     <TouchableOpacity
       key={Service?.id}
@@ -47,6 +51,7 @@ const MembershipChooseService = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
+      <Modals loaderIndicator modalVisible={isLoading} />
       <View style={styles.mainView}>
         <View style={styles.innerMain}>
           <View style={{ marginTop: Theme.hp("4%"), alignItems: "center" }}>
@@ -75,14 +80,20 @@ const MembershipChooseService = ({ navigation }) => {
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("6%") }}
-            onPress={() =>
-              service !== ""
-                ? navigation.navigate("MembershipCongrats")
-                : Alert.alert(
-                    "Required",
-                    "To proceed further,Please Select one Service that you can provide."
-                  )
-            }
+            onPress={() => {
+              const value = { ...values, service: service };
+
+              providerRegistration(value, navigation, setIsLoading);
+              // service !== ""
+              //   ? console.log(
+              //       JSON.stringify({ ...values, service: service }, 2, 4)
+              //     )
+              //   : // ? navigation.navigate("MembershipCongrats")
+              //     Alert.alert(
+              //       "Required",
+              //       "To proceed further,Please Select one Service that you can provide."
+              //     );
+            }}
           />
         </View>
       </View>

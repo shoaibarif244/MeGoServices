@@ -1,4 +1,6 @@
 apply plugin: "com.android.application"
+// Add the Google services Gradle plugin
+apply plugin: "com.google.gms.google-services"
 apply from: "../../node_modules/react-native-vector-icons/fonts.gradle"
 import com.android.build.OutputFile
 
@@ -256,6 +258,9 @@ android {
 }
 
 dependencies {
+    // Import the Firebase BoM
+    implementation platform('com.google.firebase:firebase-bom:31.2.0')
+    
     implementation fileTree(dir: "libs", include: ["*.jar"])
 
     //noinspection GradleDynamicVersion

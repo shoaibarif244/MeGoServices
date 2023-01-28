@@ -53,11 +53,12 @@ const styles = StyleSheet.create({
     alignSelf: "center",
   },
   uploadView: {
-    marginTop: Theme.hp("2%"),
+    marginTop: Theme.hp("1%"),
     flexDirection: "row",
     justifyContent: "space-between",
   },
   uploadContainer: {
+    marginTop: Theme.hp("1%"),
     height: Theme.hp("16%"),
     borderWidth: 1,
     borderRadius: 7,

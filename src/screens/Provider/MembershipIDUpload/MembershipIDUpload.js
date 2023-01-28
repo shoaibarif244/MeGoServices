@@ -1,19 +1,26 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import { View, Text, TouchableOpacity, Image } from "react-native";
 import React, { useState } from "react";
 import styles from "./Style";
 import { COLORS, FONTS, Theme } from "../../../utils/Theme";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Buttons from "../../../components/Buttons/Buttons";
-// import ImageCropPicker from "react-native-image-crop-picker";
-const MembershipIDUpload = ({ navigation }) => {
-  const [idFront, setIdFront] = useState("");
-  const [idBack, setIdBack] = useState("");
-  const chooseProfilePic = () => {
-    // ImageCropPicker.openPicker({
-    //   cropping: true,
-    // }).then((image) => {
-    //   setImage(image.path);
-    // });
+import ImageCropPicker from "react-native-image-crop-picker";
+const MembershipIDUpload = ({ navigation, route }) => {
+  const { values } = route?.params;
+
+  const [idFront, setIdFront] = useState(null);
+  const [idBack, setIdBack] = useState(null);
+  const chooseProfilePic = (field) => {
+    ImageCropPicker.openPicker({
+      cropping: true,
+    })
+      .then((image) => {
+        field === "idFront" ? setIdFront(image) : setIdBack(image);
+        console.log(image);
+      })
+      .catch((error) =>
+        console.log("ERROR in ImageCropPicker.openPicker()", error)
+      );
   };
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
@@ -23,21 +30,47 @@ const MembershipIDUpload = ({ navigation }) => {
             <Text style={styles.txtHeading}>Providers Registration</Text>
           </View>
           <View style={{ marginTop: Theme.hp("6%") }}>
-            {idFront !== "" && <Text style={styles.txtTitle}>ID Front</Text>}
+            {idFront && <Text style={styles.txtTitle}>ID Front</Text>}
             <TouchableOpacity
               activeOpacity={0.6}
               style={styles.uploadContainer}
+              onPress={() => chooseProfilePic("idFront")}
             >
-              <Text style={styles.txtUpload}>ID Front</Text>
+              {idFront ? (
+                <Image
+                  source={{ uri: idFront?.path }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 6,
+                  }}
+                  resizeMode="cover"
+                />
+              ) : (
+                <Text style={styles.txtUpload}>ID Front</Text>
+              )}
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: Theme.hp("2%") }}>
-            {idBack !== "" && <Text style={styles.txtTitle}>ID Back</Text>}
+            {idBack && <Text style={styles.txtTitle}>ID Back</Text>}
             <TouchableOpacity
               activeOpacity={0.6}
               style={styles.uploadContainer}
+              onPress={() => chooseProfilePic("idBack")}
             >
-              <Text style={styles.txtUpload}>ID Back</Text>
+              {idBack ? (
+                <Image
+                  source={{ uri: idBack?.path }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    borderRadius: 6,
+                  }}
+                  resizeMode="cover"
+                />
+              ) : (
+                <Text style={styles.txtUpload}>ID Back</Text>
+              )}
             </TouchableOpacity>
           </View>
           <View style={{ marginTop: Theme.hp("6%") }}>
@@ -59,7 +92,15 @@ const MembershipIDUpload = ({ navigation }) => {
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("6%") }}
-            onPress={() => navigation.navigate("MembershipOtherDocs")}
+            onPress={() =>
+              navigation.navigate("MembershipOtherDocs", {
+                values: {
+                  ...values,
+                  idFront: idFront,
+                  idBack: idBack,
+                },
+              })
+            }
           />
         </View>
       </View>

@@ -1,10 +1,10 @@
 import { StyleSheet, Dimensions } from "react-native";
-import Theme from "../../Utils/Theme";
+import { Theme } from "../../utils/Theme";
 const styles = StyleSheet.create({
   modalWrap: {
     flex: 1,
-    alignItems: Theme.align,
-    justifyContent: Theme.align,
+    alignItems: "center",
+    justifyContent: "center",
     backgroundColor: "rgba(255,255,255,0.7)",
   },
   imgLogo: {

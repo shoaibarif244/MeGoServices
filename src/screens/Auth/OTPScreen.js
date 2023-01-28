@@ -18,6 +18,8 @@ import { COLORS, FONTS, Theme } from "../../utils/Theme";
 import IMAGES from "../../assets/images";
 import Buttons from "../../components/Buttons/Buttons";
 import styles from "./Style";
+import { verifyOtp } from "../../services/apis";
+import Modals from "../../components/Modals/Modals";
 
 const { Value, Text: AnimatedText } = Animated;
 
@@ -46,7 +48,9 @@ const animateCell = ({ hasValue, index, isFocused }) => {
   ]).start();
 };
 
-const OTPScreen = ({ navigation }) => {
+const OTPScreen = ({ navigation, route }) => {
+  const { values } = route?.params;
+  const [isLoading, setIsLoading] = useState(false);
   const [OTP, setValue] = useState("");
   const ref = useBlurOnFulfill({ OTP, cellCount: CELL_COUNT });
   const [props, getCellOnLayoutHandler] = useClearByFocusCell({
@@ -102,6 +106,7 @@ const OTPScreen = ({ navigation }) => {
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
+      <Modals loaderIndicator modalVisible={isLoading} />
       <View style={styles.mainView}>
         <View style={styles.innerMain}>
           <View style={styles.indicatorConatiner}>
@@ -148,11 +153,14 @@ const OTPScreen = ({ navigation }) => {
               BGcolor={COLORS.primary}
               btnStyle={{ marginTop: Theme.hp("6%") }}
               onPress={() => {
-                OTP === "0000"
-                  ? navigation.navigate("CustomerServices")
-                  : OTP === "1111"
-                  ? navigation.navigate("MembershipDetails")
-                  : alert("Unathorized OTP");
+                const value = { ...values, otp: OTP };
+                // verifyOtp(value, navigation, setIsLoading);
+                navigation.navigate("MembershipDetails");
+                // OTP === "0000"
+                //   ? navigation.navigate("CustomerServices")
+                //   : OTP === "1111"
+                //   ? navigation.navigate("MembershipDetails")
+                //   : alert("Unathorized OTP");
                 // navigation.replace("LoginScreen");
               }}
             />

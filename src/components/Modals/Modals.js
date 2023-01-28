@@ -8,12 +8,12 @@ import {
   Pressable,
   TextInput,
 } from "react-native";
-import Theme from "../../Utils/Theme";
-import { Entypo } from "../../Utils/Exports";
+import { COLORS, FONTS, Theme } from "../../utils/Theme";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 // import Modal from "react-native-modal";
 import styless from "./Style";
 import Buttons from "../Buttons/Buttons";
+import { WaveIndicator } from "react-native-indicators";
 const Modals = (props) => {
   const {
     loader,
@@ -33,12 +33,10 @@ const Modals = (props) => {
       {loaderIndicator === true ? (
         <Modal visible={modalVisible} transparent>
           <View style={styless.modalWrap}>
-            <ActivityIndicator
-              size="large"
-              color={Theme.primary}
-              style={styless.indic}
-            />
-            <Text style={styless.txtLoading}>{label}</Text>
+            <View style={{ height: Theme.hp("12%") }}>
+              <WaveIndicator size={Theme.hp("12%")} color={COLORS.primary} />
+            </View>
+            {label && <Text style={styless.txtLoading}>{label}</Text>}
           </View>
         </Modal>
       ) : secureAllFunds === true ? (

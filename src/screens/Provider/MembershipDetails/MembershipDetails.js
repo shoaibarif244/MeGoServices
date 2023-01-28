@@ -1,4 +1,11 @@
-import { View, Text, TouchableOpacity } from "react-native";
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  Image,
+  ImageBackground,
+  StyleSheet,
+} from "react-native";
 import React, { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
 import styles from "./Style";
@@ -7,19 +14,24 @@ import TextInputs from "../../../components/TextInputs/TextInputs";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Buttons from "../../../components/Buttons/Buttons";
-// import ImageCropPicker from "react-native-image-crop-picker";
+import ImageCropPicker from "react-native-image-crop-picker";
 const MembershipDetails = ({ navigation }) => {
   const ref_PhoneInput = useRef();
 
-  const [selectedCountry, setSelectedCountry] = useState("AE");
-  const [ownImg, setOwnImg] = useState("");
-  const [shopImg, setShopImage] = useState("");
-  const chooseProfilePic = () => {
-    // ImageCropPicker.openPicker({
-    //   cropping: true,
-    // }).then((image) => {
-    //   setImage(image.path);
-    // });
+  const [selectedCountry, setSelectedCountry] = useState("PK");
+  const [ownImg, setOwnImg] = useState(null);
+  const [shopImg, setShopImage] = useState(null);
+  const chooseProfilePic = (field) => {
+    ImageCropPicker.openPicker({
+      cropping: true,
+    })
+      .then((image) => {
+        field === "own" ? setOwnImg(image) : setShopImage(image);
+        console.log(image);
+      })
+      .catch((error) =>
+        console.log("ERROR in ImageCropPicker.openPicker()", error)
+      );
   };
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
@@ -44,7 +56,8 @@ const MembershipDetails = ({ navigation }) => {
             <Text style={styles.txtTitle}>Mobile Number</Text>
             <PhoneInput
               ref={ref_PhoneInput}
-              defaultCode="AE"
+              defaultCode="PK"
+              disabled
               layout="first"
               countryPickerProps={{ countryCodes: ["PK", "AE"] }}
               onChangeCountry={(country) => setSelectedCountry(country.cca2)}
@@ -55,6 +68,7 @@ const MembershipDetails = ({ navigation }) => {
               textContainerStyle={styles.textContainerStyle}
               textInputStyle={styles.textInputStyle}
               codeTextStyle={styles.codeTextStyle}
+              value={"3048700192"}
             />
           </View>
           <View style={{ marginTop: Theme.hp("1%") }}>
@@ -92,25 +106,50 @@ const MembershipDetails = ({ navigation }) => {
           </View>
           <View style={styles.uploadView}>
             <View style={{ width: "37%" }}>
-              {ownImg !== "" && <Text style={styles.txtTitle}>Your Photo</Text>}
+              <Text style={styles.txtTitle}>Your Photo</Text>
               <TouchableOpacity
                 activeOpacity={0.6}
                 style={styles.uploadContainer}
+                onPress={() => chooseProfilePic("own")}
               >
-                <Text style={styles.txtUpload}>Upload Your Photo</Text>
+                {ownImg ? (
+                  <Image
+                    source={{ uri: ownImg?.path }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: 6,
+                    }}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <Text style={styles.txtUpload}>Upload Your Photo</Text>
+                )}
               </TouchableOpacity>
             </View>
             <View style={{ width: "58%" }}>
-              {shopImg !== "" && (
-                <Text style={styles.txtTitle}>Shop Image</Text>
-              )}
+              <Text style={styles.txtTitle}>Shop Image</Text>
+
               <TouchableOpacity
                 activeOpacity={0.6}
                 style={styles.uploadContainer}
+                onPress={() => chooseProfilePic("shop")}
               >
-                <Text style={styles.txtUpload}>
-                  Provider Shop image or wallpaper
-                </Text>
+                {shopImg ? (
+                  <Image
+                    source={{ uri: shopImg?.path }}
+                    style={{
+                      width: "100%",
+                      height: "100%",
+                      borderRadius: 6,
+                    }}
+                    resizeMode="cover"
+                  />
+                ) : (
+                  <Text style={styles.txtUpload}>
+                    Provider Shop image or wallpaper
+                  </Text>
+                )}
               </TouchableOpacity>
             </View>
           </View>
@@ -132,8 +171,23 @@ const MembershipDetails = ({ navigation }) => {
             label={"Next"}
             txtColor={COLORS.txtWhite}
             BGcolor={COLORS.primary}
-            btnStyle={{ marginTop: Theme.hp("4%") }}
-            onPress={() => navigation.navigate("MembershipIDUpload")}
+            btnStyle={{ marginTop: Theme.hp("2%") }}
+            onPress={() =>
+              navigation.navigate("MembershipIDUpload", {
+                values: {
+                  fullName: "Shoaib",
+                  phoneNo:
+                    ref_PhoneInput.current?.getNumberAfterPossiblyEliminatingZero()
+                      ?.formattedNumber,
+                  email: "shoaibarif@gmail.com",
+                  guarantorName: "Khan",
+                  guarantorPhoneNum: "+923001234567",
+                  profileImg: ownImg,
+                  shopImg: shopImg,
+                  isTerms: true,
+                },
+              })
+            }
           />
         </View>
       </View>
