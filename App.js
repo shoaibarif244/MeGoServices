@@ -10,18 +10,31 @@ import { PersistGate } from "redux-persist/integration/react";
 import NetInfo from "@react-native-community/netinfo";
 import { useDispatch, useSelector } from "./src/redux/store";
 import { updateNetConnection } from "./src/redux/slices/netInfoSlice";
+import messaging from "@react-native-firebase/messaging";
+import { Alert } from "react-native";
 const App = () => {
   const selector = useSelector((state) => state);
   const { netInfo } = selector;
   const dispatch = useDispatch();
   const checkInternet = () => {
-    // NetInfo.addEventListener((state) => {
-    //   dispatch(updateNetConnection(state.isConnected));
-    // });
+    NetInfo.addEventListener((state) => {
+      dispatch(updateNetConnection(state.isConnected));
+    });
   };
   useEffect(() => {
+    const unsubscribe = messaging().onMessage(async (remoteMessage) => {
+      Alert.alert("A new FCM message arrived!", JSON.stringify(remoteMessage));
+    });
+
+    messaging().onNotificationOpenedApp((remoteMessage) => {
+      console.log("App Opened with message ", remoteMessage.data);
+      // navigation.navigate();
+    });
+
     checkInternet();
+
     console.log(BASE_URL, netInfo.connected);
+    return unsubscribe;
   }, [netInfo.connected]);
 
   return (

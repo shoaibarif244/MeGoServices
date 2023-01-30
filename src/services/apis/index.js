@@ -3,7 +3,7 @@ import { Alert } from "react-native";
 import { Theme } from "../../utils/Theme";
 // import Toast from "react-native-toast-message";
 // import { userToken } from "../redux/actions";
-
+import messaging from "@react-native-firebase/messaging";
 export const saveUserOtp = async (values, navigation, setIsLoading) => {
   try {
     setIsLoading(true);
@@ -80,9 +80,10 @@ export const providerRegistration = async (
   try {
     setIsLoading(true);
     console.log(values);
+    let deviceFCM_Token = await messaging().getToken();
     const formData = new FormData();
     formData.append("fullName", values?.fullName);
-    formData.append("phoneNo", "+9230076031058");
+    formData.append("phoneNo", "+923001234567");
     formData.append("email", values?.email);
     formData.append("guarantorName", values?.guarantorName);
     formData.append("guarantorPhoneNum", values?.guarantorPhoneNum);
@@ -96,7 +97,7 @@ export const providerRegistration = async (
       name: "shopImg.png",
       type: values?.shopImg?.mime,
     });
-    // formData.append("isTerms", values?.isTerms);
+    formData.append("isTerms", values?.isTerms);
     formData.append("idFront", {
       uri: values?.idFront?.path,
       name: "idFront.png",
@@ -119,15 +120,17 @@ export const providerRegistration = async (
     });
     formData.append("service", values?.service);
     formData.append("userType", "provider");
+    formData.append("isFCM", true);
+    formData.append("fcmToken", deviceFCM_Token);
 
     const response = await axios.post(
-      "users/updateProvider/63d0a5ca6f48e042f62c1308",
+      "users/updateProvider/63d6c7df86e9756b99a305b8",
       formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
           Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2FmZWEyMDNjZTZhMzMyNTdkMTFiNjAiLCJwaG9uZU5vIjoiKzkyMzAwNzYwMzEwNTgiLCJvdHAiOjM0NDAsImlhdCI6MTY3MjQ3NjY5OH0.TpwUiPZcZ8Vq5f7bhTeuarHIWxbWhHSwxxyCHrbV6j0",
+            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Q2YzdkZjg2ZTk3NTZiOTlhMzA1YjgiLCJpYXQiOjE2NzUwMjAyODZ9.bE6VIoY7oSaRh6O8BfJRs32A52oju_y2uHFzmdyVDlA",
         },
       }
     );

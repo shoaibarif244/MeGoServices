@@ -11,6 +11,7 @@ import { BASE_URL } from "@env";
 import { persistor, store } from "./src/redux/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { Provider } from "react-redux";
+import messaging from "@react-native-firebase/messaging";
 
 if (Text.defaultProps == null) {
   Text.defaultProps = {};
@@ -32,4 +33,15 @@ const AppRedux = () => (
   </Provider>
 );
 
-AppRegistry.registerComponent(appName, () => AppRedux);
+messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  console.log("Message handled in the background!", remoteMessage);
+});
+
+function HeadlessCheck({ isHeadless }) {
+  if (isHeadless) {
+    // App has been launched in the background by iOS, ignore
+    return null;
+  }
+  return <AppRedux />;
+}
+AppRegistry.registerComponent(appName, () => HeadlessCheck);
