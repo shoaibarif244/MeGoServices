@@ -38,7 +38,6 @@ const styles = StyleSheet.create({
   serviceImg: {
     height: Theme.hp("10%"),
     width: Theme.wp("16%"),
-    resizeMode: "center",
   },
   serviceName: {
     fontSize: Theme.txtSmallestt,

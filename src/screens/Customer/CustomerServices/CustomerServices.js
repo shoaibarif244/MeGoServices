@@ -6,14 +6,29 @@ import {
   TouchableOpacity,
   FlatList,
 } from "react-native";
-import React from "react";
+import React, { useEffect } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { ImageSlider } from "react-native-image-slider-banner";
 import IMAGES from "../../../assets/images";
 import Headers from "../../../components/Headers/Headers";
 import { COLORS, Theme } from "../../../utils/Theme";
 import styles from "./Style";
+import { useSelector } from "../../../redux/store";
+import { getAllServices } from "../../../services/apis";
+import Modals from "../../../components/Modals/Modals";
+import { useState } from "react";
 const CustomerServices = ({ navigation }) => {
+  const { userReducer } = useSelector((state) => state);
+  const [isLoading, setIsLoading] = useState(false);
+  const [allServices, setAllServices] = useState([]);
+  useEffect(() => {
+    getAllServices(
+      userReducer?.token,
+      navigation,
+      setIsLoading,
+      setAllServices
+    );
+  }, []);
   const images = [
     {
       img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ5a5uCP-n4teeW2SApcIqUrcQApev8ZVCJkA&usqp=CAU",
@@ -36,26 +51,37 @@ const CustomerServices = ({ navigation }) => {
     { id: 8, img: IMAGES.autoMechanic, name: "Auto Mechanic" },
     { id: 9, img: IMAGES.plumber, name: "Plumber" },
   ];
-  const Service = ({ service, style }) => (
-    <TouchableOpacity
-      key={service?.id}
-      style={{ ...styles.serviceContainer, ...style }}
-      // onPress={() => {
-      //   navigation.navigate("CustomerServiceDescription", {
-      //     service: service,
-      //   });
-      // }}
-    >
-      <Image source={service?.img} style={styles.serviceImg} />
-      <Text allowFontScaling={false} style={styles.serviceName}>
-        {service?.name}
-      </Text>
-    </TouchableOpacity>
-  );
+  const Service = ({ service, style }) => {
+    return (
+      <TouchableOpacity
+        key={service?.id}
+        style={{ ...styles.serviceContainer, ...style }}
+        // onPress={() => {
+        //   navigation.navigate("CustomerServiceDescription", {
+        //     service: service,
+        //   });
+        // }}
+      >
+        <Image
+          source={{ uri: service?.serviceIcon }}
+          style={styles.serviceImg}
+          resizeMode="contain"
+        />
+        <Text allowFontScaling={false} style={styles.serviceName}>
+          {service?.name}
+        </Text>
+      </TouchableOpacity>
+    );
+  };
 
   return (
     <>
       <Headers mainHeader={true} navigation={navigation} />
+      <Modals
+        loaderIndicator
+        modalVisible={isLoading}
+        label={"Fetching Services"}
+      />
       <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
         <View style={styles.mainView}>
           <View style={styles.sliderContainer}>
@@ -76,7 +102,7 @@ const CustomerServices = ({ navigation }) => {
             <Text style={styles.txtTitle}>Popular Services</Text>
             <View style={{ marginTop: Theme.hp("1%") }}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
-                {services.map((service, index) => {
+                {allServices.map((service, index) => {
                   return (
                     <Service
                       service={service}
@@ -96,7 +122,7 @@ const CustomerServices = ({ navigation }) => {
                   }}
                   showsVerticalScrollIndicator={false}
                   numColumns={3}
-                  data={services}
+                  data={allServices}
                   renderItem={({ item }) => {
                     return <Service service={item} />;
                   }}

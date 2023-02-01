@@ -2,10 +2,9 @@ import { combineReducers } from "redux";
 // import profileSliceReducer from "./slices/profileSlice";
 // import dashboardSliceReducer from "./slices/dashboardSlice";
 // import logSliceReducer from "./slices/logSlice";
-import userSliceReducer from "./slices/UserSlice";
-import NetInfoReducer from "./slices/netInfoSlice";
-import UserReducer from "./slices/UserSlice";
-import LoaderReducer from "./slices/loaderSlice";
+import userSliceReducer from "./slices/userSlice";
+import netInfoSliceReducer from "./slices/netInfoSlice";
+import loaderSliceReducer from "./slices/loaderSlice";
 
 // import roleSliceReducer from "./slices/RoleSlice";
 // import alarmSliceReducer from "./slices/AlarmSlice";
@@ -33,9 +32,8 @@ const rootPersistConfig = {
 };
 const rootReducer = combineReducers({
   userReducer: userSliceReducer,
-  netInfo: NetInfoReducer,
-  loaderSlice: LoaderReducer,
-  UserSlice: UserReducer,
+  netInfoReducer: netInfoSliceReducer,
+  loaderSlice: loaderSliceReducer,
   // roleReducer: roleSliceReducer,
   // alarmReducer: alarmSliceReducer,
   // procedureReducer: procedureSliceReducer,

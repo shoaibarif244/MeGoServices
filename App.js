@@ -5,16 +5,14 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 import StackNavigator from "./src/navigations/StackNavigator";
 const RootStack = createNativeStackNavigator();
 import { BASE_URL } from "@env";
-import { persistor, Store } from "./src/redux/store1";
-import { PersistGate } from "redux-persist/integration/react";
 import NetInfo from "@react-native-community/netinfo";
 import { useDispatch, useSelector } from "./src/redux/store";
 import { updateNetConnection } from "./src/redux/slices/netInfoSlice";
 import messaging from "@react-native-firebase/messaging";
 import { Alert } from "react-native";
 const App = () => {
-  const selector = useSelector((state) => state);
-  const { netInfo } = selector;
+  const { netInfoReducer } = useSelector((state) => state);
+
   const dispatch = useDispatch();
   const checkInternet = () => {
     NetInfo.addEventListener((state) => {
@@ -33,9 +31,9 @@ const App = () => {
 
     checkInternet();
 
-    console.log(BASE_URL, netInfo.connected);
+    console.log(BASE_URL, netInfoReducer.connected);
     return unsubscribe;
-  }, [netInfo.connected]);
+  }, [netInfoReducer.connected]);
 
   return (
     <SafeAreaProvider>

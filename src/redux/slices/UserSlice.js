@@ -125,20 +125,13 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const userSlice = createSlice({
   name: "UserSlice",
-  initialState: {
-    token:
-      "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6Im11aGFtbWFka2hhbjQwOTBAZ21haWwuY29tIiwiX2lkIjoiNjM2YjRlOTgxNWNjNmUzN2IzNjNjY2ExIiwiaWF0IjoxNjcwMzM2Mjk0fQ.CLeWi4lsafKlPaAqCqTa8IGhZ5VFhKVbBMn2Fgg7tOM",
-    userID: "6390a823e6215bb3f42a5606",
-  },
+  initialState: {},
   reducers: {
-    setuserToken: (state, action) => {
-      state.userToken = action?.payload;
-    },
-    setUserID: (state, action) => {
-      state.userID = action?.payload;
+    saveUser: (state, action) => {
+      return { ...state, ...action?.payload };
     },
   },
 });
 
-export const { setuserToken, setUserID } = userSlice.actions;
+export const { saveUser } = userSlice.actions;
 export default userSlice.reducer;

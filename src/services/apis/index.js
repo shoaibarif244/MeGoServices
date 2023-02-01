@@ -4,6 +4,9 @@ import { Theme } from "../../utils/Theme";
 // import Toast from "react-native-toast-message";
 // import { userToken } from "../redux/actions";
 import messaging from "@react-native-firebase/messaging";
+import { dispatch, useSelector } from "../../redux/store";
+import { saveUser } from "../../redux/slices/userSlice";
+
 export const saveUserOtp = async (values, navigation, setIsLoading) => {
   try {
     setIsLoading(true);
@@ -24,7 +27,8 @@ export const saveUserOtp = async (values, navigation, setIsLoading) => {
     setIsLoading(false);
     if (response.status === 200 || response.status === 201) {
       if (response.data?.status) {
-        Alert.alert("SUCCESS ", JSON.stringify(response?.data?.success, 2, 4));
+        console.log("SUCCESS ", JSON.stringify(response?.data, 2, 4));
+        // Alert.alert("SUCCESS ", JSON.stringify(response?.data?.success, 2, 4));
         navigation.navigate("OTPScreen", { values: values });
       } else {
         Alert.alert("Error", response?.data?.error?.message);
@@ -59,8 +63,13 @@ export const verifyOtp = async (values, navigation, setIsLoading) => {
 
     setIsLoading(false);
     if (response.status === 200 || response.status === 201) {
-      Alert.alert("SUCCESS ", JSON.stringify(response, 2, 4));
-      navigation.navigate("MembershipDetails");
+      // Alert.alert("SUCCESS ", JSON.stringify(response.data, 2, 4));
+      if (response.data?.userType === "customer") {
+        navigation.navigate("CustomerServices");
+      } else {
+        navigation.navigate("MembershipDetails");
+      }
+      dispatch(saveUser(response?.data));
       // navigation.navigate("OTPScreen", { values: values });
       // dispatch(userToken(response.data.token));
     } else {
@@ -81,6 +90,8 @@ export const providerRegistration = async (
     setIsLoading(true);
     console.log(values);
     let deviceFCM_Token = await messaging().getToken();
+    console.log(deviceFCM_Token);
+
     const formData = new FormData();
     formData.append("fullName", values?.fullName);
     formData.append("phoneNo", "+923001234567");
@@ -146,12 +157,45 @@ export const providerRegistration = async (
       Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
     }
   } catch (error) {
-    console.log("ERROR saveUserOtp() API", JSON.stringify(error, 2, 4));
+    console.log(
+      "ERROR providerRegistration() API",
+      JSON.stringify(error, 2, 4)
+    );
     setIsLoading(false);
     alert(JSON.stringify(error, 2, 4));
   }
 };
 
+export const getAllServices = async (
+  token,
+  navigation,
+  setIsLoading,
+  setAllServices
+) => {
+  try {
+    setIsLoading(true);
+    const response = await axios.get("services/allServices", {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setIsLoading(false);
+    if (response.status === 200 || response.status === 201) {
+      setAllServices(response.data);
+      console.log("SUCCESS ", JSON.stringify(response.data, 2, 4));
+      // Alert.alert("SUCCESS ", JSON.stringify(response?.data?.success, 2, 4));
+      // navigation.navigate("OTPScreen", { values: values });
+
+      // dispatch(userToken(response.data.token));
+    } else {
+      Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
+    }
+  } catch (error) {
+    console.log("ERROR saveUserOtp() API", JSON.stringify(error, 2, 4));
+    setIsLoading(false);
+    alert(JSON.stringify(error, 2, 4));
+  }
+};
 export const loginUser = async (
   values,
   dispatch,

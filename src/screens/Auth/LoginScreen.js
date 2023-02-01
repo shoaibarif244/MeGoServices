@@ -1,4 +1,4 @@
-import { View, Text, Image } from "react-native";
+import { View, Text, Image, Alert } from "react-native";
 import React, { useState } from "react";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { COLORS, FONTS, Theme } from "../../utils/Theme";
@@ -13,6 +13,10 @@ import { useEffect } from "react";
 import RadioButtonRN from "radio-buttons-react-native";
 import { saveUserOtp } from "../../services/apis";
 import Modals from "../../components/Modals/Modals";
+import {
+  isValidPhoneNumFor_PK,
+  isValidPhoneNumFor_UAE,
+} from "../../utils/Helpers";
 
 const LoginScreen = ({ navigation }) => {
   const data = [
@@ -25,26 +29,26 @@ const LoginScreen = ({ navigation }) => {
       value: "provider",
     },
   ];
-  const [isEnabled, setIsEnabled] = useState(false);
+  const [isUAE, setIsUAE] = useState(false);
   const [phoneNum, setPhoneNum] = useState("");
   const [countryCode, setCountryCode] = useState("");
   const [userType, setUserType] = useState("customer");
   const [isLoading, setIsLoading] = useState(false);
   useEffect(() => {
-    setCountryCode(isEnabled ? "+971" : "+92");
+    setCountryCode(isUAE ? "+971" : "+92");
     setPhoneNum("");
-  }, [isEnabled]);
+  }, [isUAE]);
   const toggleSwitch = () => {
-    setIsEnabled((previousState) => !previousState);
+    setIsUAE((previousState) => !previousState);
   };
 
   const onTextChange = (text) => {
     let cleaned = text.replace(/\D/g, "");
-    let reg = isEnabled
-      ? /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/
-      : /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
-    let isValid = reg.test(cleaned);
-    console.log(cleaned, isValid);
+    // let reg = isUAE
+    //   ? /^(?:\+971|00971|0)(?:2|3|4|6|7|9|50|51|52|55|56)[0-9]{7}$/
+    //   : /^((\+92)?(0092)?(92)?(0)?)(3)([0-9]{9})$/;
+    // let isValid = reg.test(cleaned);
+    // console.log(cleaned, isValid);
     setPhoneNum(cleaned);
   };
   const uploadImage = async (image) => {
@@ -80,9 +84,35 @@ const LoginScreen = ({ navigation }) => {
       })
       .catch((e) => console.log(e.message));
   };
+  const sendOTP = () => {
+    let numWithCountryCode = countryCode + phoneNum;
+    let data = {
+      phoneNo: numWithCountryCode,
+      userType: userType,
+    };
+    if (isUAE) {
+      if (isValidPhoneNumFor_UAE(numWithCountryCode)) {
+        saveUserOtp(data, navigation, setIsLoading);
+      } else {
+        Alert.alert("WRONG UAE NUMBER!!!", "Enter a valid UAE Phone Number");
+      }
+    } else {
+      if (isValidPhoneNumFor_PK(numWithCountryCode)) {
+        saveUserOtp(data, navigation, setIsLoading);
+      } else {
+        Alert.alert("WRONG PK NUMBER!!!", "Enter a valid PK Phone Number");
+      }
+    }
+
+    // navigation.navigate("OTPScreen", { values: data });
+  };
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
-      <Modals loaderIndicator modalVisible={isLoading} />
+      <Modals
+        loaderIndicator
+        modalVisible={isLoading}
+        label={"Sending OTP..."}
+      />
       <View style={styles.mainView}>
         <View style={styles.innerMain}>
           <View style={styles.indicatorConatiner}>
@@ -98,12 +128,12 @@ const LoginScreen = ({ navigation }) => {
               source={IMAGES.flagPK}
               style={{
                 ...styles.flag,
-                borderColor: !isEnabled ? COLORS.secondary : COLORS.lightGrey,
+                borderColor: !isUAE ? COLORS.secondary : COLORS.lightGrey,
               }}
             />
 
             <SwitchToggle
-              switchOn={isEnabled}
+              switchOn={isUAE}
               onPress={toggleSwitch}
               containerStyle={styles.switchCont}
               circleStyle={styles.switchCircle}
@@ -117,7 +147,7 @@ const LoginScreen = ({ navigation }) => {
               source={IMAGES.flagUAE}
               style={{
                 ...styles.flag,
-                borderColor: isEnabled ? COLORS.secondary : COLORS.lightGrey,
+                borderColor: isUAE ? COLORS.secondary : COLORS.lightGrey,
               }}
             />
           </View>
@@ -127,7 +157,7 @@ const LoginScreen = ({ navigation }) => {
               placeholder=""
               phoneNum={true}
               keyboardType={"phone-pad"}
-              country={isEnabled}
+              country={isUAE}
               value={phoneNum}
               onChangeText={(val) => {
                 onTextChange(val);
@@ -155,14 +185,7 @@ const LoginScreen = ({ navigation }) => {
               txtColor={COLORS.txtWhite}
               BGcolor={COLORS.primary}
               btnStyle={{ marginTop: Theme.hp("4%") }}
-              onPress={() => {
-                const data = {
-                  phoneNo: countryCode + phoneNum,
-                  userType: userType,
-                };
-                // saveUserOtp(data, navigation, setIsLoading);
-                navigation.navigate("OTPScreen", { values: data });
-              }}
+              onPress={() => sendOTP()}
             />
           </View>
         </View>

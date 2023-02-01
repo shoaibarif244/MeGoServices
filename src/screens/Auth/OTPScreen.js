@@ -106,7 +106,7 @@ const OTPScreen = ({ navigation, route }) => {
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
-      <Modals loaderIndicator modalVisible={isLoading} />
+      <Modals loaderIndicator modalVisible={isLoading} label="Verifying OTP" />
       <View style={styles.mainView}>
         <View style={styles.innerMain}>
           <View style={styles.indicatorConatiner}>
@@ -154,8 +154,8 @@ const OTPScreen = ({ navigation, route }) => {
               btnStyle={{ marginTop: Theme.hp("6%") }}
               onPress={() => {
                 const value = { ...values, otp: OTP };
-                // verifyOtp(value, navigation, setIsLoading);
-                navigation.navigate("MembershipDetails");
+                verifyOtp(value, navigation, setIsLoading);
+                // navigation.navigate("MembershipDetails");
                 // OTP === "0000"
                 //   ? navigation.navigate("CustomerServices")
                 //   : OTP === "1111"
