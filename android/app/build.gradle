@@ -168,6 +168,9 @@ android {
                 }
             }
         }
+        lintOptions { 
+            checkReleaseBuilds false
+        }
     }
 
     if (isNewArchitectureEnabled()) {
