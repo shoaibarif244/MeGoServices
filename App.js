@@ -11,8 +11,8 @@ import { updateNetConnection } from "./src/redux/slices/netInfoSlice";
 import messaging from "@react-native-firebase/messaging";
 import { Alert } from "react-native";
 const App = () => {
-  const { netInfoReducer } = useSelector((state) => state);
-
+  const { netInfoReducer, providerReducer } = useSelector((state) => state);
+  // alert(JSON.stringify(providerReducer, 2, 4));
   const dispatch = useDispatch();
   const checkInternet = () => {
     NetInfo.addEventListener((state) => {

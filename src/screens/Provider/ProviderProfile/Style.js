@@ -15,6 +15,10 @@ const styles = StyleSheet.create({
     fontSize: Theme.txtMedium,
     fontFamily: FONTS.semiBold,
   },
+  img100: {
+    width: "100%",
+    height: "100%",
+  },
 });
 
 export default styles;

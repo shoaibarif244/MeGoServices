@@ -12,8 +12,11 @@ import Headers from "../../../components/Headers/Headers";
 import styles from "./Style";
 import IMAGES from "../../../assets/images";
 import Buttons from "../../../components/Buttons/Buttons";
+import { useSelector } from "../../../redux/store";
 
 const ProviderProfile = ({ navigation }) => {
+  const { providerReducer } = useSelector((state) => state);
+
   const [selectedTab, setSelectedTab] = useState("Personal");
   const TABS = [
     {
@@ -50,16 +53,22 @@ const ProviderProfile = ({ navigation }) => {
           justifyContent: "center",
         }}
       >
-        <Text
+        <Image
+          source={{ uri: providerReducer?.imgs?.shopImg }}
+          style={styles.img100}
+          resizeMode="cover"
+        />
+        {/* <Text
           allowFontScaling={false}
           style={{
             color: COLORS.greish,
             fontFamily: FONTS.medium,
             fontSize: Theme.txtSmallest,
+            position: "absolute",
           }}
         >
           Wallpaper (20% opacity)
-        </Text>
+        </Text> */}
       </TouchableOpacity>
 
       <View style={{ width: Theme.width, alignSelf: "center" }}>
@@ -75,12 +84,9 @@ const ProviderProfile = ({ navigation }) => {
             }}
           >
             <Image
-              source={IMAGES.logoWithBG}
-              style={{
-                width: "100%",
-                height: "100%",
-              }}
-              resizeMode="center"
+              source={{ uri: providerReducer?.imgs?.profileImg }}
+              style={{ ...styles.img100, borderRadius: Theme.wp("13%") }}
+              resizeMode="cover"
             />
           </View>
           <View
@@ -96,7 +102,7 @@ const ProviderProfile = ({ navigation }) => {
                 fontSize: Theme.txtSmallest,
               }}
             >
-              Provider Name
+              {providerReducer?.fullName}
             </Text>
             <Text
               allowFontScaling={false}
@@ -108,6 +114,7 @@ const ProviderProfile = ({ navigation }) => {
               }}
             >
               Since: <Text style={{ color: COLORS.secondary }}>DD-MM-YYYY</Text>
+              {/* {moment(providerReducer?.createdAt).format('DD-MM-YYYY')} */}
             </Text>
           </View>
         </View>
@@ -127,7 +134,8 @@ const ProviderProfile = ({ navigation }) => {
               fontSize: Theme.txtSmall,
             }}
           >
-            Service Category
+            {providerReducer?.service}
+            {/* Service Category:  */}
           </Text>
           <Text
             allowFontScaling={false}
@@ -214,7 +222,7 @@ const ProviderProfile = ({ navigation }) => {
                   fontSize: Theme.txtSmallestt,
                 }}
               >
-                050-1234567
+                {providerReducer?.phoneNo}
               </Text>
             </View>
             <View style={{ width: "49%" }}>
@@ -236,7 +244,7 @@ const ProviderProfile = ({ navigation }) => {
                   fontSize: Theme.txtSmallestt,
                 }}
               >
-                customername@mail.com
+                {providerReducer?.email}
               </Text>
             </View>
           </View>
@@ -267,7 +275,7 @@ const ProviderProfile = ({ navigation }) => {
                   fontSize: Theme.txtSmallestt,
                 }}
               >
-                Name of Guarantor
+                {providerReducer?.guarantorName}
               </Text>
             </View>
             <View style={{ width: "49%" }}>
@@ -289,7 +297,7 @@ const ProviderProfile = ({ navigation }) => {
                   fontSize: Theme.txtSmallestt,
                 }}
               >
-                050-1234567
+                {providerReducer?.guarantorPhoneNum}
               </Text>
             </View>
           </View>
@@ -312,7 +320,12 @@ const ProviderProfile = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Text
+              <Image
+                source={{ uri: providerReducer?.imgs?.idFront }}
+                style={{ ...styles.img100, borderRadius: 7 }}
+                resizeMode="cover"
+              />
+              {/* <Text
                 allowFontScaling={false}
                 style={{
                   color: COLORS.greish,
@@ -321,7 +334,7 @@ const ProviderProfile = ({ navigation }) => {
                 }}
               >
                 ID Front
-              </Text>
+              </Text> */}
             </View>
             <View
               activeOpacity={0.6}
@@ -334,7 +347,12 @@ const ProviderProfile = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Text
+              <Image
+                source={{ uri: providerReducer?.imgs?.idBack }}
+                style={{ ...styles.img100, borderRadius: 7 }}
+                resizeMode="cover"
+              />
+              {/* <Text
                 allowFontScaling={false}
                 style={{
                   color: COLORS.greish,
@@ -343,7 +361,7 @@ const ProviderProfile = ({ navigation }) => {
                 }}
               >
                 ID Back
-              </Text>
+              </Text> */}
             </View>
           </View>
           <View
@@ -365,7 +383,12 @@ const ProviderProfile = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Text
+              <Image
+                source={{ uri: providerReducer?.imgs?.technicalDiploma }}
+                style={{ ...styles.img100, borderRadius: 7 }}
+                resizeMode="cover"
+              />
+              {/* <Text
                 allowFontScaling={false}
                 style={{
                   color: COLORS.greish,
@@ -374,7 +397,7 @@ const ProviderProfile = ({ navigation }) => {
                 }}
               >
                 Technical Diploma
-              </Text>
+              </Text> */}
             </View>
             <View
               activeOpacity={0.6}
@@ -387,7 +410,12 @@ const ProviderProfile = ({ navigation }) => {
                 justifyContent: "center",
               }}
             >
-              <Text
+              <Image
+                source={{ uri: providerReducer?.imgs?.experienceCertificate }}
+                style={{ ...styles.img100, borderRadius: 7 }}
+                resizeMode="cover"
+              />
+              {/* <Text
                 allowFontScaling={false}
                 style={{
                   color: COLORS.greish,
@@ -396,7 +424,7 @@ const ProviderProfile = ({ navigation }) => {
                 }}
               >
                 Experience Certificate
-              </Text>
+              </Text> */}
             </View>
           </View>
         </View>

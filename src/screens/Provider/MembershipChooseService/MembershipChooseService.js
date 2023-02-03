@@ -16,7 +16,10 @@ import Buttons from "../../../components/Buttons/Buttons";
 import { useState } from "react";
 import Modals from "../../../components/Modals/Modals";
 import { providerRegistration } from "../../../services/apis";
+import { useSelector } from "../../../redux/store";
 const MembershipChooseService = ({ navigation, route }) => {
+  const { providerReducer } = useSelector((state) => state);
+
   const { values } = route?.params;
 
   const SERVICES = [
@@ -51,7 +54,11 @@ const MembershipChooseService = ({ navigation, route }) => {
 
   return (
     <KeyboardAwareScrollView style={{ backgroundColor: COLORS.white }}>
-      <Modals loaderIndicator modalVisible={isLoading} />
+      <Modals
+        loaderIndicator
+        modalVisible={isLoading}
+        label={"Creating Provider's Profile"}
+      />
       <View style={styles.mainView}>
         <View style={styles.innerMain}>
           <View style={{ marginTop: Theme.hp("4%"), alignItems: "center" }}>
@@ -83,7 +90,12 @@ const MembershipChooseService = ({ navigation, route }) => {
             onPress={() => {
               const value = { ...values, service: service };
 
-              providerRegistration(value, navigation, setIsLoading);
+              providerRegistration(
+                providerReducer,
+                value,
+                navigation,
+                setIsLoading
+              );
               // service !== ""
               //   ? console.log(
               //       JSON.stringify({ ...values, service: service }, 2, 4)

@@ -6,6 +6,8 @@ import { Theme } from "../../utils/Theme";
 import messaging from "@react-native-firebase/messaging";
 import { dispatch, useSelector } from "../../redux/store";
 import { saveUser } from "../../redux/slices/userSlice";
+import { saveCustomer } from "../../redux/slices/customerSlice";
+import { saveProvider } from "../../redux/slices/providerSlice";
 
 export const saveUserOtp = async (values, navigation, setIsLoading) => {
   try {
@@ -63,15 +65,19 @@ export const verifyOtp = async (values, navigation, setIsLoading) => {
 
     setIsLoading(false);
     if (response.status === 200 || response.status === 201) {
-      // Alert.alert("SUCCESS ", JSON.stringify(response.data, 2, 4));
+      console.log(
+        "RESPONSE===> users/verifyOtp ",
+        JSON.stringify(response.data, 2, 4)
+      );
       if (response.data?.userType === "customer") {
+        dispatch(saveCustomer(response?.data));
         navigation.navigate("CustomerServices");
       } else {
-        navigation.navigate("MembershipDetails");
+        response?.data?.isProfileCompleted
+          ? navigation.navigate("DrawerNavigator")
+          : navigation.navigate("MembershipDetails");
+        dispatch(saveProvider(response?.data));
       }
-      dispatch(saveUser(response?.data));
-      // navigation.navigate("OTPScreen", { values: values });
-      // dispatch(userToken(response.data.token));
     } else {
       Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
     }
@@ -82,6 +88,7 @@ export const verifyOtp = async (values, navigation, setIsLoading) => {
   }
 };
 export const providerRegistration = async (
+  providerReducer,
   values,
   navigation,
   setIsLoading
@@ -94,7 +101,7 @@ export const providerRegistration = async (
 
     const formData = new FormData();
     formData.append("fullName", values?.fullName);
-    formData.append("phoneNo", "+923001234567");
+    formData.append("phoneNo", providerReducer?.phoneNo);
     formData.append("email", values?.email);
     formData.append("guarantorName", values?.guarantorName);
     formData.append("guarantorPhoneNum", values?.guarantorPhoneNum);
@@ -131,26 +138,28 @@ export const providerRegistration = async (
     });
     formData.append("service", values?.service);
     formData.append("userType", "provider");
+    formData.append("createdAt", new Date());
     formData.append("isFCM", true);
     formData.append("fcmToken", deviceFCM_Token);
+    formData.append("isProfileCompleted", true);
 
     const response = await axios.post(
-      "users/updateProvider/63d6c7df86e9756b99a305b8",
+      `users/updateProvider/${providerReducer?._id}`,
       formData,
       {
         headers: {
           "Content-Type": "multipart/form-data",
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2M2Q2YzdkZjg2ZTk3NTZiOTlhMzA1YjgiLCJpYXQiOjE2NzUwMjAyODZ9.bE6VIoY7oSaRh6O8BfJRs32A52oju_y2uHFzmdyVDlA",
+          Authorization: `Bearer ${providerReducer?.token}`,
         },
       }
     );
 
     setIsLoading(false);
     if (response.status === 200 || response.status === 201) {
-      Alert.alert("SUCCESS ", JSON.stringify(response, 2, 4));
+      Alert.alert("SUCCESS ", JSON.stringify(response.data, 2, 4));
       console.log(JSON.stringify(response, 2, 4));
-      // navigation.navigate("MembershipDetails");
+      dispatch(saveProvider(response?.data));
+      navigation.navigate("MembershipCongrats");
       // navigation.navigate("OTPScreen", { values: values });
       // dispatch(userToken(response.data.token));
     } else {

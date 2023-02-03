@@ -5,6 +5,7 @@ import {
   Image,
   ImageBackground,
   StyleSheet,
+  Alert,
 } from "react-native";
 import React, { useRef, useState } from "react";
 import PhoneInput from "react-native-phone-number-input";
@@ -15,9 +16,11 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import BouncyCheckbox from "react-native-bouncy-checkbox";
 import Buttons from "../../../components/Buttons/Buttons";
 import ImageCropPicker from "react-native-image-crop-picker";
-const MembershipDetails = ({ navigation }) => {
-  const ref_PhoneInput = useRef();
+import { useSelector } from "../../../redux/store";
+const MembershipDetails = ({ navigation, route }) => {
+  const { providerReducer } = useSelector((state) => state);
 
+  const ref_PhoneInput = useRef();
   const [selectedCountry, setSelectedCountry] = useState("PK");
   const [ownImg, setOwnImg] = useState(null);
   const [shopImg, setShopImage] = useState(null);
@@ -68,7 +71,11 @@ const MembershipDetails = ({ navigation }) => {
               textContainerStyle={styles.textContainerStyle}
               textInputStyle={styles.textInputStyle}
               codeTextStyle={styles.codeTextStyle}
-              value={"3048700192"}
+              value={
+                providerReducer?.country === "PAKISTAN"
+                  ? providerReducer?.phoneNo?.slice(3)
+                  : providerReducer?.phoneNo?.slice(4)
+              }
             />
           </View>
           <View style={{ marginTop: Theme.hp("1%") }}>
@@ -173,20 +180,25 @@ const MembershipDetails = ({ navigation }) => {
             BGcolor={COLORS.primary}
             btnStyle={{ marginTop: Theme.hp("2%") }}
             onPress={() =>
-              navigation.navigate("MembershipIDUpload", {
-                values: {
-                  fullName: "Shoaib",
-                  phoneNo:
-                    ref_PhoneInput.current?.getNumberAfterPossiblyEliminatingZero()
-                      ?.formattedNumber,
-                  email: "shoaibarif@gmail.com",
-                  guarantorName: "Khan",
-                  guarantorPhoneNum: "+923001234567",
-                  profileImg: ownImg,
-                  shopImg: shopImg,
-                  isTerms: true,
-                },
-              })
+              shopImg == null || ownImg == null
+                ? Alert.alert(
+                    "Required Field!!!",
+                    "Must upload/select your own photo & shop image"
+                  )
+                : navigation.navigate("MembershipIDUpload", {
+                    values: {
+                      fullName: "Shoaib",
+                      phoneNo:
+                        ref_PhoneInput.current?.getNumberAfterPossiblyEliminatingZero()
+                          ?.formattedNumber,
+                      email: "shoaibarif@gmail.com",
+                      guarantorName: "Khan",
+                      guarantorPhoneNum: "+923001234567",
+                      profileImg: ownImg,
+                      shopImg: shopImg,
+                      isTerms: true,
+                    },
+                  })
             }
           />
         </View>

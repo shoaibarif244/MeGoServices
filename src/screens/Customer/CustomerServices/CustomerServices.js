@@ -18,12 +18,12 @@ import { getAllServices } from "../../../services/apis";
 import Modals from "../../../components/Modals/Modals";
 import { useState } from "react";
 const CustomerServices = ({ navigation }) => {
-  const { userReducer } = useSelector((state) => state);
+  const { customerReducer } = useSelector((state) => state);
   const [isLoading, setIsLoading] = useState(false);
   const [allServices, setAllServices] = useState([]);
   useEffect(() => {
     getAllServices(
-      userReducer?.token,
+      customerReducer?.token,
       navigation,
       setIsLoading,
       setAllServices
