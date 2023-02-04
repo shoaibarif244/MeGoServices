@@ -51,6 +51,7 @@ const ProviderProfile = ({ navigation }) => {
           backgroundColor: COLORS.lightGreish,
           alignItems: "center",
           justifyContent: "center",
+          opacity: 0.8,
         }}
       >
         <Image

@@ -35,6 +35,7 @@ const MembershipChooseService = ({ navigation, route }) => {
   ];
   const [service, setService] = useState("");
   const [isLoading, setIsLoading] = useState(false);
+
   const Service = ({ Service }) => (
     <TouchableOpacity
       key={Service?.id}

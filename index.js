@@ -12,6 +12,9 @@ import { persistor, store } from "./src/redux/store";
 import { PersistGate } from "redux-persist/lib/integration/react";
 import { Provider } from "react-redux";
 import messaging from "@react-native-firebase/messaging";
+messaging().setBackgroundMessageHandler(async (remoteMessage) => {
+  console.log("Message handled in the background!", remoteMessage);
+});
 
 if (Text.defaultProps == null) {
   Text.defaultProps = {};
@@ -32,10 +35,6 @@ const AppRedux = () => (
     </PersistGate>
   </Provider>
 );
-
-messaging().setBackgroundMessageHandler(async (remoteMessage) => {
-  console.log("Message handled in the background!", remoteMessage);
-});
 
 function HeadlessCheck({ isHeadless }) {
   if (isHeadless) {

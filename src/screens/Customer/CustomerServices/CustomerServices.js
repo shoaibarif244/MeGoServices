@@ -99,7 +99,7 @@ const CustomerServices = ({ navigation }) => {
             />
           </View>
           <View style={styles.innerMain}>
-            <Text style={styles.txtTitle}>Popular Services</Text>
+            {/* <Text style={styles.txtTitle}>Popular Services</Text>
             <View style={{ marginTop: Theme.hp("1%") }}>
               <ScrollView horizontal showsHorizontalScrollIndicator={false}>
                 {allServices.map((service, index) => {
@@ -111,7 +111,7 @@ const CustomerServices = ({ navigation }) => {
                   );
                 })}
               </ScrollView>
-            </View>
+            </View> */}
             <View style={{ marginTop: Theme.hp("1%") }}>
               <Text style={styles.txtTitle}>Popular Services</Text>
               <View>

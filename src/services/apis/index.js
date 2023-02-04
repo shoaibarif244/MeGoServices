@@ -73,10 +73,13 @@ export const verifyOtp = async (values, navigation, setIsLoading) => {
         dispatch(saveCustomer(response?.data));
         navigation.navigate("CustomerServices");
       } else {
-        response?.data?.isProfileCompleted
-          ? navigation.navigate("DrawerNavigator")
-          : navigation.navigate("MembershipDetails");
-        dispatch(saveProvider(response?.data));
+        if (response?.data?.isProfileCompleted) {
+          navigation.navigate("DrawerNavigator");
+          dispatch(saveProvider(response?.data));
+        } else {
+          dispatch(saveProvider(response?.data));
+          navigation.navigate("MembershipDetails");
+        }
       }
     } else {
       Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
@@ -138,33 +141,35 @@ export const providerRegistration = async (
     });
     formData.append("service", values?.service);
     formData.append("userType", "provider");
-    formData.append("createdAt", new Date());
+    // formData.append("createdAt", new Date());
     formData.append("isFCM", true);
     formData.append("fcmToken", deviceFCM_Token);
     formData.append("isProfileCompleted", true);
-
+    console.log("1 BEFORE");
     const response = await axios.post(
       `users/updateProvider/${providerReducer?._id}`,
       formData,
       {
         headers: {
+          Accept: "*/*",
           "Content-Type": "multipart/form-data",
           Authorization: `Bearer ${providerReducer?.token}`,
         },
       }
     );
+    console.log("2 AFTER axios");
 
     setIsLoading(false);
-    if (response.status === 200 || response.status === 201) {
-      Alert.alert("SUCCESS ", JSON.stringify(response.data, 2, 4));
-      console.log(JSON.stringify(response, 2, 4));
-      dispatch(saveProvider(response?.data));
-      navigation.navigate("MembershipCongrats");
-      // navigation.navigate("OTPScreen", { values: values });
-      // dispatch(userToken(response.data.token));
-    } else {
-      Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
-    }
+    // if (response.status === 200 || response.status === 201) {
+    // Alert.alert("SUCCESS ", JSON.stringify(response.data, 2, 4));
+    console.log(JSON.stringify(response, 2, 4));
+    dispatch(saveProvider(response?.data));
+    navigation.navigate("MembershipCongrats");
+    // navigation.navigate("OTPScreen", { values: values });
+    // dispatch(userToken(response.data.token));
+    // } else {
+    //   Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
+    // }
   } catch (error) {
     console.log(
       "ERROR providerRegistration() API",
