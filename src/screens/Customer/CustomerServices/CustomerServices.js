@@ -56,11 +56,11 @@ const CustomerServices = ({ navigation }) => {
       <TouchableOpacity
         key={service?.id}
         style={{ ...styles.serviceContainer, ...style }}
-        // onPress={() => {
-        //   navigation.navigate("CustomerServiceDescription", {
-        //     service: service,
-        //   });
-        // }}
+        onPress={() => {
+          navigation.navigate("CustomerServiceDescription", {
+            service: service,
+          });
+        }}
       >
         <Image
           source={{ uri: service?.serviceIcon }}

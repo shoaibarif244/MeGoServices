@@ -7,6 +7,7 @@ const styles = StyleSheet.create({
     paddingBottom: Theme.hp("5%"),
   },
   innerMain: {
+    flex: 1,
     width: Theme.width,
     alignSelf: "center",
   },
@@ -16,8 +17,8 @@ const styles = StyleSheet.create({
     padding: Theme.hp("1%"),
   },
   txtTitle: {
-    fontSize: Theme.txtMedium,
-    fontFamily: FONTS.bold,
+    fontSize: Theme.txtSmall,
+    fontFamily: FONTS.semiBold,
     color: COLORS.black,
   },
   serviceContainer: {
@@ -35,10 +36,35 @@ const styles = StyleSheet.create({
     resizeMode: "center",
   },
   serviceName: {
-    fontSize: Theme.txtSmall,
+    fontSize: Theme.txtSmallestt,
     fontFamily: FONTS.medium,
     color: COLORS.black,
-    marginTop: Theme.hp("0.6%"),
+  },
+  serviceDesc: {
+    fontSize: Theme.txtSmallestt,
+    fontFamily: FONTS.regular,
+    color: COLORS.black,
+    textAlign: "justify",
+  },
+  innerIconStyle: {
+    borderColor: "transparent",
+    borderWidth: 1,
+    borderRadius: 5,
+  },
+  subServiceContainer: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    marginTop: Theme.hp("1%"),
+    padding: Theme.hp("1%"),
+    borderBottomWidth: 2,
+    borderColor: COLORS.lightGreish,
+  },
+  subServiceName: {
+    fontSize: Theme.txtSmallestt,
+    fontFamily: FONTS.regular,
+    color: COLORS.black,
+    textDecorationLine: "none",
+    marginLeft: Theme.wp("2"),
   },
 });
 

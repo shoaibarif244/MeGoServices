@@ -5,7 +5,8 @@ import styles from "./Style";
 const SplashScreen = ({ navigation }) => {
   useEffect(() => {
     setTimeout(() => {
-      navigation.replace("OnBoardingSlider");
+      navigation.replace("CustomerServices");
+      // navigation.replace("OnBoardingSlider");
     }, 2500);
   }, []);
 

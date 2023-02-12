@@ -21,11 +21,14 @@ const App = () => {
   };
   useEffect(() => {
     const unsubscribe = messaging().onMessage(async (remoteMessage) => {
-      Alert.alert("A new FCM message arrived!", JSON.stringify(remoteMessage));
+      Alert.alert(
+        "A new FCM message arrived!",
+        JSON.stringify(remoteMessage, 2, 4)
+      );
     });
 
     messaging().onNotificationOpenedApp((remoteMessage) => {
-      console.log("App Opened with message ", remoteMessage.data);
+      console.log("App Opened with message ", remoteMessage);
       // navigation.navigate();
     });
 

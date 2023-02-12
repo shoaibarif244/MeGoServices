@@ -210,6 +210,36 @@ export const getAllServices = async (
     alert(JSON.stringify(error, 2, 4));
   }
 };
+export const getAllSubServices = async (
+  serviceId,
+  token,
+  navigation,
+  setIsLoading,
+  setAllSubServices
+) => {
+  try {
+    setIsLoading(true);
+    const response = await axios.get(`services/allSubServices/${serviceId}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    setIsLoading(false);
+    if (response.status === 200 || response.status === 201) {
+      setAllSubServices(response.data);
+      console.log("SUCCESS ", JSON.stringify(response.data, 2, 4));
+      // Alert.alert("SUCCESS ", JSON.stringify(response?.data?.success, 2, 4));
+
+      // dispatch(userToken(response.data.token));
+    } else {
+      Alert.alert("ERROR ", JSON.stringify(response, 2, 4));
+    }
+  } catch (error) {
+    console.log("ERROR saveUserOtp() API", JSON.stringify(error, 2, 4));
+    setIsLoading(false);
+    alert(JSON.stringify(error, 2, 4));
+  }
+};
 export const loginUser = async (
   values,
   dispatch,

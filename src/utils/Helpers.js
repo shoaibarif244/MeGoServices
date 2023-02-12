@@ -10,3 +10,9 @@ export const isValidPhoneNumFor_PK = (phoneNum) => {
   let isValid = regExp.test(cleaned);
   return isValid;
 };
+export const calculateSum = (array, property) => {
+  const total = array.reduce((accumulator, object) => {
+    return accumulator + object[property];
+  }, 0);
+  return total;
+};

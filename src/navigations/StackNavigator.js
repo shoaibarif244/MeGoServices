@@ -30,6 +30,7 @@ import ProviderMainPage from "../screens/Provider/ProviderMainPage/ProviderMainP
 import DrawerNavigator from "./DrawerNavigator";
 import Gallery from "../screens/Gallery/Gallery";
 import Notifications from "../screens/Notifications/Notifications";
+import CustomerServiceDescription1 from "../screens/Customer/CustomerServiceDescription/CustomerServiceDescription1";
 
 LogBox.ignoreLogs([
   "VirtualizedLists should never be nested inside plain ScrollViews with the same orientation because it can break windowing and other functionality - use another VirtualizedList-backed container instead.",
@@ -70,6 +71,10 @@ const StackNavigator = () => {
         <Stack.Screen
           name="CustomerServiceDescription"
           component={CustomerServiceDescription}
+        />
+        <Stack.Screen
+          name="CustomerServiceDescription1"
+          component={CustomerServiceDescription1}
         />
 
         <Stack.Screen name="MembershipDetails" component={MembershipDetails} />
